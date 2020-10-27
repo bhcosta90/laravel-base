@@ -1,6 +1,6 @@
 <?php
 
-namespace BRCas\User\Form;
+namespace BRCas\User\Forms;
 
 use Kris\LaravelFormBuilder\Form;
 use Kris\LaravelFormBuilder\Field;

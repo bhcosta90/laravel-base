@@ -5,10 +5,10 @@ return [
         "users" => \BRCas\User\Http\Controller\UserController::class,
     ],
     "services" => [
-        "user" => \BRCas\User\Services\UserService::class,
+        "user" => \App\Services\UserService::class,
     ],
     "forms" => [
-        "user" => \BRCas\User\Form\UserForm::class,
+        "user" => \App\Forms\UserForm::class,
     ],
     "layout" => "layouts.app",
     "tables" => [
@@ -33,10 +33,10 @@ return [
     ],
     "permissions" => [
         "user" => [
-            "index" =>  null,
-            "edit" => null,
-            "create" => null,
-            "delete" => null,
+            "index" =>  "Usuário | Relatório",
+            "edit" => "Usuário | Edição",
+            "create" => "Usuário | Cadastro",
+            "delete" => "Usuário | Excluir",
         ]
     ]
 ];

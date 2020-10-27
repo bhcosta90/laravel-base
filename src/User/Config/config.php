@@ -8,7 +8,7 @@ return [
         "user" => \BRCas\User\Services\UserService::class,
     ],
     "forms" => [
-        "user" => \BRCas\User\Form\UserForm::class,
+        "user" => \BRCas\User\Forms\UserForm::class,
     ],
     "layout" => "layouts.app",
     "tables" => [
