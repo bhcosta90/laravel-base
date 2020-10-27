@@ -1,0 +1,19 @@
+.card {
+    > .table {
+        margin-bottom: 0
+    }
+
+    > .card-footer {
+        > .pagination {
+            > nav {
+                > .pagination {
+                    margin-bottom: 0
+                }
+            }
+        }
+    }
+
+    td.action-show, td.action-edit, td.action-delete {
+        width: 1px;;
+    }
+}
