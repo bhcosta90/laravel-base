@@ -10,7 +10,8 @@ trait Execute {
     private function responseError($status, $message)
     {
         if (!request()->isJson()) {
-            return redirect()->back()->withErrors($message)->withInput();
+            session()->flash('error', $message);
+            return redirect()->back()->withInput();
         }
 
         return response()->json([
@@ -27,7 +28,7 @@ trait Execute {
             Log::error($e->getTraceAsString());
             return $this->responseError(Response::HTTP_BAD_REQUEST, $e->getMessage());
         } catch (Exception $e){
-            Log::error($e);
+            dump($e);
         }
     }
 }

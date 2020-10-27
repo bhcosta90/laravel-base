@@ -17,7 +17,7 @@ class UserForm extends Form {
             ])
             ->add('email', Field::EMAIL, [
                 'label' => __('Email'),
-                'rules' => 'required|email|min:5'
+                'rules' => 'required|email|min:5|unique:users,email'
             ]);
 
         if(empty($this->request->route('user'))){

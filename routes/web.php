@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controller::class, 'welcome']);
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'admin'], function(){
+    Auth::routes(['register' => false]);
+});
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::group(['prefix' => 'users', 'as' => 'users.'], function(){

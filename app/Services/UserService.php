@@ -28,12 +28,7 @@ class UserService extends ServicesUserService implements UserContract  {
         /**
          * @var User
          */
-        if($objUser = auth()->user() && $objUser->can('Grupo | Vincular ao Usuário')){
-            /**
-             * @var User;
-             */
-            $objUser = auth()->user();
-
+        if(($objUser = auth()->user()) && $objUser->can('Grupo | Vincular ao Usuário')){
             foreach($obj->permissions as $permission){
                 if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
             }
