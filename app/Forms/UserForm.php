@@ -60,28 +60,31 @@ class UserForm extends Form {
 
     private function roles()
     {
-        $objPermission = Role::all();
-        $permissions = [];
+        /**
+         * @var User
+         */
+        $objUser = auth()->user();
+        if($objUser->can('Grupo | Vincular ao Usuário')){
+            $objPermission = Role::all();
+            $permissions = [];
 
-        foreach($objPermission as $rs){
-            /**
-             * @var User
-             */
-            $user = auth()->user();
-            list($module, $permission) = explode('|', $rs->name);
-            if($user->can($rs->name)){
-                $permissions[$module][$rs->id] = __($permission);
+            foreach($objPermission as $rs){
+                /**
+                 * @var User
+                 */
+                $permission = $rs->name;
+                $permissions[$rs->id] = __($permission);
             }
-        }
 
-        if(!empty($permissions)){
-            $this->add('permissions', Field::SELECT, [
-                'label' => __("Permissions"),
-                'attr' => [
-                    'multiple' => true,
-                ],
-                'choices' => $permissions,
-            ]);
+            if(!empty($permissions)){
+                $this->add('roles', Field::SELECT, [
+                    'label' => __("Roles"),
+                    'attr' => [
+                        'multiple' => true,
+                    ],
+                    'choices' => $permissions,
+                ]);
+            }
         }
     }
 }

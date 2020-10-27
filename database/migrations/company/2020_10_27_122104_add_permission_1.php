@@ -21,6 +21,7 @@ class AddPermission1 extends Migration
             'Grupo | Cadastro',
             'Grupo | Edição',
             'Grupo | Excluir',
+            'Grupo | Vincular ao Usuário',
         ];
     }
 }

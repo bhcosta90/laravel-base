@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin\User;
 use App\Forms\RoleForm;
 use App\Http\Controllers\Controller;
 use App\Services\RoleService;
-use BRCas\Package\Traits\Controller\Web\{Create, Index};
+use BRCas\Package\Traits\Controller\Web\{Create, Destroy, Edit, Index};
 
 class RoleController extends Controller
 {
-    use Index, Create;
+    use Index, Create, Edit, Destroy;
 
     public function table()
     {
@@ -36,6 +36,11 @@ class RoleController extends Controller
     public function createView()
     {
         return 'admin.role.create';
+    }
+
+    public function editView()
+    {
+        return 'admin.role.edit';
     }
 
     public function routeBegging()
