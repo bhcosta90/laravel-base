@@ -25,7 +25,7 @@ trait Create
 
         $form = $formBuilder->create($this->form(), [
             'method' => 'POST',
-            'url' => route('admin.users.users.store'),
+            'url' => route($this->routeBegging() . '.store'),
         ])->add('btn', 'submit', [
             "attr" => ['class' => 'btn btn-primary'],
             'label' => __('New')
@@ -40,7 +40,6 @@ trait Create
         if(!method_exists($objService, 'create')) throw new Exception(__('Method edit not found in service'));
 
         return $this->execute(function() use($objService, $formBuilder) {
-
             $objForm = $formBuilder->create($this->form());
             if (!$objForm->isValid()) {
                 return redirect()->back()->withErrors($objForm->getErrors())->withInput();
@@ -48,7 +47,7 @@ trait Create
 
             $this->message = __('Registro atualizado com sucesso');
             $data = $objForm->getFieldValues();
-            $obj = $objService->create($data);
+            $objService->create($data);
 
             return redirect()->route($this->routeBegging() . ".index");
         });

@@ -28,7 +28,7 @@ trait Edit
 
         $form = $formBuilder->create($this->form(), [
             'method' => 'PUT',
-            'url' => route('admin.users.users.update', $obj->id),
+            'url' => route($this->routeBegging() . '.update', $obj->id),
             'model' => $obj,
         ])->add('btn', 'submit', [
             "attr" => ['class' => 'btn btn-primary'],
