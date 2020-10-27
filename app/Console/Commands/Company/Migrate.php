@@ -97,6 +97,6 @@ class Migrate extends Command
 
         $this->info("End Connecting Company - {$company->name}");
         $this->info('-----------------------------------------');
-        $company->update(['migrated' => false]);
+        $company->update(['migrated' => true]);
     }
 }

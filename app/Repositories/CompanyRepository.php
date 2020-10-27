@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Jobs\Company\MigrateDatabase;
 use App\Models\Company;
 use BRCas\User\Repositories\Contracts\UserContract;
 use BRCas\User\Repositories\UserRepository;
@@ -84,8 +85,7 @@ class CompanyRepository implements Contracts\CompanyContract {
 
         $company = Company::create($data);
 
-        $this->connectInDatabase($company)->setDefaultConnection(true);
-        $this->user->create($data['user']);
+        MigrateDatabase::dispatch($company, $data['user']);
 
         return $company;
     }

@@ -22,12 +22,4 @@ class Company extends Model
         'bd_username',
         'domain',
     ];
-
-    public static function booted()
-    {
-        static::created(function($obj){
-            if(!app()->environment('testing')) app(CompanyService::class)->createDatabase($obj->bd_database);
-            Artisan::call('company:migrate', ['--id' => $obj->id]);
-        });
-    }
 }
