@@ -20,11 +20,13 @@ class DatabaseSeeder extends Seeder
             'bd_username' => env('DB_USERNAME'),
         ]);
 
-        \App\Models\Company::factory()->create([
-            'domain' => 'localhost1',
-            'bd_hostname' => env('DB_HOST'),
-            'bd_database' => env('DB_DATABASE') . '_multitenant',
-            'bd_username' => env('DB_USERNAME'),
-        ]);
+        if(!app()->environment('production')){
+            \App\Models\Company::factory()->create([
+                'domain' => 'localhost1',
+                'bd_hostname' => env('DB_HOST'),
+                'bd_database' => env('DB_DATABASE') . '_multitenant',
+                'bd_username' => env('DB_USERNAME'),
+            ]);
+        }
     }
 }

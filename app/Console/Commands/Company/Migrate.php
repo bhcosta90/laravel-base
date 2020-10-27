@@ -90,7 +90,9 @@ class Migrate extends Command
                 $params += $paramDatabase;
             }
 
-            $this->call('db:seed', $params);
+            if(!app()->environment('production')){
+                $this->call('db:seed', $params);
+            }
         }
 
         $this->info("End Connecting Company - {$company->name}");
