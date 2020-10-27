@@ -50,7 +50,7 @@ trait Create
             $data = $objForm->getFieldValues();
             $obj = $objService->create($data);
 
-            return $this->routeIndex($obj);
+            return redirect()->route($this->routeBegging() . ".index");
         });
     }
 }
