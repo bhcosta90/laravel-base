@@ -13,7 +13,7 @@ class UserService  {
     /**
      * @var UserRepository
      */
-    private $repository;
+    protected $repository;
 
     public function __construct(UserRepository $repository)
     {
@@ -22,28 +22,26 @@ class UserService  {
     
     public function index()
     {
-        return User::orderName();
+        return $this->repository->index();
     }
 
     public function find($id)
     {
-        return User::find($id);
+        return $this->repository->find($id);
     }
 
     public function edit(User $obj, array $data)
     {
-        return $obj->update($data);
+        return $this->repository->edit($obj, $data);
     }
 
     public function create(array $data)
     {
-        $data['password'] = Hash::make($data['password']);
-        return User::create($data);
+        $this->repository->create($data);
     }
 
     public function destroy($obj)
     {
-        if(auth()->user() == $obj) throw new CustomException(__('You cannot delete your user'), Response::HTTP_BAD_REQUEST);
-        return $obj->delete();
+        return $this->repository->destroy($obj);
     }
 }
