@@ -2,9 +2,10 @@
 
 namespace App\Forms;
 
+use App\Models\User;
 use Kris\LaravelFormBuilder\Form;
 use Kris\LaravelFormBuilder\Field;
-use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\{Permission, Role};
 
 class UserForm extends Form {
     public function buildForm()
@@ -26,20 +27,61 @@ class UserForm extends Form {
             ]);
         }
 
+        $this->permissions();
+        $this->roles();
+    }
+
+    private function permissions()
+    {
         $objPermission = Permission::all();
         $permissions = [];
 
         foreach($objPermission as $rs){
+            /**
+             * @var User
+             */
+            $user = auth()->user();
             list($module, $permission) = explode('|', $rs->name);
-            $permissions[$module][$rs->id] = __($permission);
+            if($user->can($rs->name)){
+                $permissions[$module][$rs->id] = __($permission);
+            }
         }
 
-        $this->add('permissions', Field::SELECT, [
-            'label' => __("Permissions"),
-            'attr' => [
-                'multiple' => true,
-            ],
-            'choices' => $permissions,
-        ]);
+        if(!empty($permissions)){
+            $this->add('permissions', Field::SELECT, [
+                'label' => __("Permissions"),
+                'attr' => [
+                    'multiple' => true,
+                ],
+                'choices' => $permissions,
+            ]);
+        }
+    }
+
+    private function roles()
+    {
+        $objPermission = Role::all();
+        $permissions = [];
+
+        foreach($objPermission as $rs){
+            /**
+             * @var User
+             */
+            $user = auth()->user();
+            list($module, $permission) = explode('|', $rs->name);
+            if($user->can($rs->name)){
+                $permissions[$module][$rs->id] = __($permission);
+            }
+        }
+
+        if(!empty($permissions)){
+            $this->add('permissions', Field::SELECT, [
+                'label' => __("Permissions"),
+                'attr' => [
+                    'multiple' => true,
+                ],
+                'choices' => $permissions,
+            ]);
+        }
     }
 }

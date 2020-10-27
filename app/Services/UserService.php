@@ -3,12 +3,23 @@
 namespace App\Services;
 
 use App\Models\User;
+use BRCas\User\Repositories\Contracts\UserContract;
 use BRCas\User\Services\UserService as ServicesUserService;
 use Illuminate\Support\Facades\Hash;
 
-class UserService extends ServicesUserService  {
+class UserService extends ServicesUserService implements UserContract  {
+    
     private function registerPermissions($obj, array $permissions)
     {
+        /**
+         * @var User;
+         */
+        $objUser = auth()->user();
+
+        foreach($obj->permissions as $permission){
+            if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
+        }
+
         $obj->syncPermissions($permissions);
     }
 

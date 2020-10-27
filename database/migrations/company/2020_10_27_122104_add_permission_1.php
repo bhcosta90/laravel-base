@@ -16,6 +16,11 @@ class AddPermission1 extends Migration
             'Usuário | Cadastro',
             'Usuário | Edição',
             'Usuário | Excluir',
+            
+            'Grupo | Relatório',
+            'Grupo | Cadastro',
+            'Grupo | Edição',
+            'Grupo | Excluir',
         ];
     }
 }
