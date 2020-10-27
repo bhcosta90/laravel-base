@@ -231,11 +231,18 @@ return [
     */
 
     'menu' => [
+        ['header' => 'data_settings'],
         [
             'text' => 'Usuários',
             'url' => 'admin/users/users',
             'icon' => 'far fa-user',
             'active' => ['admin/users/users*']
+        ],
+        [
+            'text' => 'Grupos',
+            'url' => 'admin/users/roles',
+            'icon' => 'fas fa-users',
+            'active' => ['admin/users/roles*']
         ]
     ],
     'menu_old' => [

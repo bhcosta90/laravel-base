@@ -16,4 +16,5 @@ return [
     'Important'                     => 'Importante',
     'Warning'                       => 'Aviso',
     'Information'                   => 'Informação',
+    'data_settings'                 => 'Dados do Sistema',
 ];
