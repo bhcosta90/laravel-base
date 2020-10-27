@@ -13,13 +13,14 @@ class UserService extends ServicesUserService implements UserContract  {
         /**
          * @var User;
          */
-        $objUser = auth()->user();
+        if($objUser = auth()->user()){
 
-        foreach($obj->permissions as $permission){
-            if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
+            foreach($obj->permissions as $permission){
+                if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
+            }
+
+            $obj->syncPermissions($permissions);
         }
-
-        $obj->syncPermissions($permissions);
     }
 
     private function registerRoles($obj, array $groups)
@@ -27,8 +28,7 @@ class UserService extends ServicesUserService implements UserContract  {
         /**
          * @var User
          */
-        $objUser = auth()->user();
-        if($objUser->can('Grupo | Vincular ao Usuário')){
+        if($objUser = auth()->user() && $objUser->can('Grupo | Vincular ao Usuário')){
             /**
              * @var User;
              */

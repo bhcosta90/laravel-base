@@ -5,6 +5,7 @@ namespace App\Jobs\Company;
 use App\Models\Company;
 use App\Models\User;
 use App\Services\CompanyService;
+use App\Services\UserService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -38,15 +39,16 @@ class MigrateDatabase implements ShouldQueue
      */
     public function handle()
     {
-        $objService = app(CompanyService::class);
+        $objServiceCompany = app(CompanyService::class);
 
         $company = $this->company;
         
-        $objService->createDatabase($company->bd_database);
-        $objService->alterConfig($company);
+        $objServiceCompany->createDatabase($company->bd_database);
+        $objServiceCompany->alterConfig($company);
         Artisan::call('company:migrate', ['--id' => $company->id]);
-        $objService->setDefaultConnection(true);
+        $objServiceCompany->setDefaultConnection(true);
 
-        User::create($this->user);
+        $objServiceUser = app(UserService::class);
+        $objServiceUser->create($this->user);
     }
 }
