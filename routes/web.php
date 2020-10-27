@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\User\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +20,9 @@ Route::get('/', [Controller::class, 'welcome']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function(){
+        Route::resource('roles', RoleController::class);
+    });
+});
