@@ -1,18 +1,14 @@
 <?php
 
-use BRCas\User\Http\Controller\UserController;
-use BRCas\User\Services\UserService;
-use BRCas\User\Form\UserForm;
-
 return [
     "controllers" => [
-        "users" => UserController::class,
+        "users" => \BRCas\User\Http\Controller\UserController::class,
     ],
     "services" => [
-        "user" => UserService::class,
+        "user" => \BRCas\User\Services\UserService::class,
     ],
     "forms" => [
-        "user" => UserForm::class,
+        "user" => \BRCas\User\Form\UserForm::class,
     ],
     "layout" => "layouts.app",
     "tables" => [

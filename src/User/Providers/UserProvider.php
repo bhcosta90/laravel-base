@@ -24,7 +24,7 @@ class UserProvider extends ServiceProvider
         if (function_exists('config_path')) {
             $this->publishes([
                 realpath(__DIR__.'/../Config/config.php') => config_path('user.php'),
-            ]);
+            ], 'config');
         }
 
         $this->mergeConfigFrom(
@@ -37,6 +37,7 @@ class UserProvider extends ServiceProvider
     {
         $this->registerViews();
         $this->registerTranslations();
+        $this->registerConfig();
     }
 
     public function registerViews()
