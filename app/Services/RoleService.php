@@ -2,22 +2,21 @@
 
 namespace App\Services;
 
+use App\Repositories\Contracts\RoleContract;
+use App\Repositories\RoleRepository;
 use Spatie\Permission\Models\Role;
 
 
 class RoleService {
-    private function registerPermissions($obj, array $permissions)
-    {
-        /**
-         * @var \App\Models\User;
-         */
-        $objUser = auth()->user();
+    
+    /**
+     * @var RoleRepository $repository
+     */
+    private $repository;
 
-        foreach($obj->permissions as $permission){
-            if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
-        }
-        
-        $obj->syncPermissions($permissions);
+    public function __construct(RoleContract $repository)
+    {
+        $this->repository = $repository;
     }
 
     public function index()
@@ -27,20 +26,18 @@ class RoleService {
 
     public function create($data)
     {
-        $obj = Role::create($data);
-        $this->registerPermissions($obj, $data['roles']);
+        $obj = $this->repository->create($data);
         return $obj;
     }
 
     public function find($id)
     {
-        return Role::find($id);
+        return $this->repository->find($id);
     }
 
     public function edit($obj, $data)
     {
-        $obj->update($data);
-        $this->registerPermissions($obj, $data['permissions']);
+        $this->repository->edit($obj, $data);
     }
 
     public function destroy($obj){
