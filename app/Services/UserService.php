@@ -3,12 +3,19 @@
 namespace App\Services;
 
 use App\Models\User;
-use BRCas\User\Repositories\Contracts\UserContract;
+use App\Repositories\Contracts\UserContract;
 use BRCas\User\Services\UserService as ServicesUserService;
 
 class UserService extends ServicesUserService implements UserContract  {
-    
-    private function registerPermissions($obj, array $permissions)
+
+    protected $repository;
+
+    public function __construct(UserContract $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public function registerPermissions($obj, array $permissions)
     {
         /**
          * @var User;
@@ -23,7 +30,7 @@ class UserService extends ServicesUserService implements UserContract  {
         }
     }
 
-    private function registerRoles($obj, array $groups)
+    public function registerRoles($obj, array $groups)
     {
         /**
          * @var User

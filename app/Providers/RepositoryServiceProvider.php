@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Repositories\{
     CompanyRepository,
-    RoleRepository
+    RoleRepository,
+    UserRepository
 };
 
 use App\Repositories\Contracts\{
     CompanyContract,
-    RoleContract
+    RoleContract,
+    UserContract
 };
 
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +27,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(CompanyContract::class, CompanyRepository::class);
         $this->app->bind(RoleContract::class, RoleRepository::class);
+        $this->app->bind(UserContract::class, UserRepository::class);
     }
 
     /**
