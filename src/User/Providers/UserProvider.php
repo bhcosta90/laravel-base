@@ -3,6 +3,7 @@
 namespace BRCas\User\Providers;
 
 use BRCas\Package\Providers\PackageServiceProvider;
+use BRCas\User\Repositories\{UserRepository, Contracts\UserContract};
 use Illuminate\Support\ServiceProvider;
 
 class UserProvider extends ServiceProvider
@@ -12,6 +13,8 @@ class UserProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(PackageServiceProvider::class);
         $this->registerConfig();
+
+        $this->app->bind(UserContract::class, UserRepository::class);
     }
 
     /**

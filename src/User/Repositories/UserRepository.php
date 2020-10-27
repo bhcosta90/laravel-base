@@ -1,25 +1,13 @@
 <?php
 
-namespace BRCas\User\Services;
+namespace BRCas\User\Repositories;
 
 use App\Models\User;
-use BRCas\Package\Exceptions\CustomException;
-use BRCas\User\Repositories\UserRepository;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use BRCas\Package\Exceptions\CustomException;
+use Illuminate\Http\Response;
 
-class UserService  {
-    
-    /**
-     * @var UserRepository
-     */
-    private $repository;
-
-    public function __construct(UserRepository $repository)
-    {
-        $this->repository = $repository;
-    }
-    
+class UserRepository implements Contracts\UserContract{
     public function index()
     {
         return User::orderName();
@@ -30,7 +18,7 @@ class UserService  {
         return User::find($id);
     }
 
-    public function edit(User $obj, array $data)
+    public function edit($obj, array $data)
     {
         return $obj->update($data);
     }
