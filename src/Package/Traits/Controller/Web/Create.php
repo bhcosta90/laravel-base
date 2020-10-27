@@ -37,7 +37,7 @@ trait Create
     public function store(FormBuilder $formBuilder){
         $objService = app($this->service());
 
-        if(!method_exists($objService, 'create')) throw new Exception(__('Method edit not found in service'));
+        if(!method_exists($objService, 'create')) throw new Exception(__('Method create not found in service'));
 
         return $this->execute(function() use($objService, $formBuilder) {
             $objForm = $formBuilder->create($this->form());
@@ -45,7 +45,6 @@ trait Create
                 return redirect()->back()->withErrors($objForm->getErrors())->withInput();
             }
 
-            $this->message = __('Registro atualizado com sucesso');
             $data = $objForm->getFieldValues();
             $objService->create($data);
 

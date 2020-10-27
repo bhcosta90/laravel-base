@@ -42,4 +42,8 @@ class CompanyService  {
     {
         return $this->repository->getDatabaseByDomain($domain);
     }
+
+    public function create($data){
+        return $this->repository->create($data);
+    }
 }

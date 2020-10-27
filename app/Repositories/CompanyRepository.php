@@ -3,10 +3,21 @@
 namespace App\Repositories;
 
 use App\Models\Company;
+use BRCas\User\Repositories\Contracts\UserContract;
+use BRCas\User\Repositories\UserRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CompanyRepository implements Contracts\CompanyContract {
+    /**
+     * @var UserRepository
+     */
+    private $user;
+    
+    public function __construct(UserContract $user)
+    {
+        $this->user = $user;
+    }
 
     public function connectInDatabase($company){
         DB::purge('tenant');
@@ -64,5 +75,18 @@ class CompanyRepository implements Contracts\CompanyContract {
         if(!empty($obj)) return $obj;
 
         return null;
+    }
+
+    public function create($data): Company {
+        $data['bd_hostname'] = env('DB_HOST');
+        $data['bd_username'] = env('DB_USERNAME');
+        $data['bd_database'] = env('DB_DATABASE') ."_". sha1($data['domain']);
+
+        $company = Company::create($data);
+
+        $this->connectInDatabase($company)->setDefaultConnection(true);
+        $this->user->create($data['user']);
+
+        return $company;
     }
 }

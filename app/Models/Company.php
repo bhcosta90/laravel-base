@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Artisan;
 class Company extends Model
 {
     use HasFactory;
+
+    public $connection = 'central';
+
     public $fillable = [
         'name',
         'migrated',

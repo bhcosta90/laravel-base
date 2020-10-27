@@ -53,7 +53,6 @@ trait Edit
                 return redirect()->back()->withErrors($objForm->getErrors())->withInput();
             }
 
-            $this->message = __('Registro atualizado com sucesso');
             $data = $objForm->getFieldValues();
             $objService->edit($obj, $data);
 
