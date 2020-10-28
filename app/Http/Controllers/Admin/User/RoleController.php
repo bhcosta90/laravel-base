@@ -5,11 +5,22 @@ namespace App\Http\Controllers\Admin\User;
 use App\Forms\RoleForm;
 use App\Http\Controllers\Controller;
 use App\Services\RoleService;
-use BRCas\Package\Traits\Controller\Web\{Create, Destroy, Edit, Index};
+use BRCas\Laravel\Traits\Controller\Web\{Create, Destroy, Edit, Index};
+use BRCas\Laravel\Traits\Support\Permission;
 
 class RoleController extends Controller
 {
-    use Index, Create, Edit, Destroy;
+    use Index, Create, Edit, Destroy, Permission;
+
+    public function permissions()
+    {
+        return [
+            'index' => 'Grupo | Relatório',
+            'create' => 'Grupo | Cadastro',
+            'edit' => 'Grupo | Edição',
+            'delete' => 'Grupo | Excluir',
+        ];
+    }
 
     public function table()
     {

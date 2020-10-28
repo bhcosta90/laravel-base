@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin'], function(){
     Auth::routes(['register' => false]);
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function(){
     Route::group(['prefix' => 'users', 'as' => 'users.'], function(){
         Route::resource('roles', RoleController::class)->except(['show']);
     });

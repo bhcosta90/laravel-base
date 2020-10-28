@@ -10,6 +10,8 @@ use Spatie\Permission\Models\{Permission, Role};
 class UserForm extends Form {
     public function buildForm()
     {
+        $id = $this->request->route('user');
+        
         $this
             ->add('name', Field::TEXT, [
                 'label' => __('Name'),
@@ -17,7 +19,7 @@ class UserForm extends Form {
             ])
             ->add('email', Field::EMAIL, [
                 'label' => __('Email'),
-                'rules' => 'required|email|min:5|unique:users,email'
+                'rules' => "required|email|min:5|unique:users,email,{$id},id"
             ]);
 
         if(empty($this->request->route('user'))){

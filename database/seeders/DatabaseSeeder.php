@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Services\CompanyService;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Company::factory()->create([
-            'domain' => 'localhost',
-            'bd_hostname' => env('DB_HOST'),
-            'bd_database' => env('DB_DATABASE'),
-            'bd_username' => env('DB_USERNAME'),
-        ]);
+        $total = 20;
+        if(User::count() == 0) {
+            User::factory()->create(['email' => 'admin@admin.com', 'name' => 'Administrador Geral']);
+            $total--;
+        }
+        
+        User::factory($total)->create();
     }
 }
