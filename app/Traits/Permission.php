@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 trait Permission
 {
-    public abstract function permissions(): array;
-
     /**
      * Run the migrations.
      *
@@ -35,6 +33,8 @@ trait Permission
 
         DB::table($tableNames['permissions'])->insert($permissions);
     }
+
+    public abstract function permissions(): array;
 
     /**
      * Reverse the migrations.

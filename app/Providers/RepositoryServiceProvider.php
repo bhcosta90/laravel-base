@@ -2,18 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repositories\{
-    CompanyRepository,
-    RoleRepository,
-    UserRepository
-};
-
-use App\Repositories\Contracts\{
-    CompanyContract,
-    RoleContract,
-    UserContract
-};
-
+use App\Repositories\{CompanyRepository, RoleRepository, UserRepository};
+use App\Repositories\Contracts\{CompanyContract, RoleContract, UserContract};
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

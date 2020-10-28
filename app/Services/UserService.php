@@ -16,6 +16,16 @@ class UserService extends ServicesUserService implements UserContract
         $this->repository = $repository;
     }
 
+    public function create(array $data)
+    {
+        $obj = $this->repository->create($data);
+
+        $this->registerPermissions($obj, $data['permissions'] ?? []);
+        $this->registerRoles($obj, $data['roles'] ?? []);
+
+        return $obj;
+    }
+
     public function registerPermissions($obj, array $permissions)
     {
         /**
@@ -43,16 +53,6 @@ class UserService extends ServicesUserService implements UserContract
 
             $obj->syncRoles($groups);
         }
-    }
-
-    public function create(array $data)
-    {
-        $obj = $this->repository->create($data);
-
-        $this->registerPermissions($obj, $data['permissions'] ?? []);
-        $this->registerRoles($obj, $data['roles'] ?? []);
-
-        return $obj;
     }
 
     public function edit($obj, $data)

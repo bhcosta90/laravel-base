@@ -3,7 +3,6 @@
 namespace App\Jobs\Company;
 
 use App\Models\Company;
-use App\Models\User;
 use App\Services\CompanyService;
 use App\Services\UserService;
 use Illuminate\Bus\Queueable;

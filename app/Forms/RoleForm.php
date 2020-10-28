@@ -2,8 +2,8 @@
 
 namespace App\Forms;
 
-use Kris\LaravelFormBuilder\Form;
 use Kris\LaravelFormBuilder\Field;
+use Kris\LaravelFormBuilder\Form;
 use Spatie\Permission\Models\Permission;
 
 class RoleForm extends Form
