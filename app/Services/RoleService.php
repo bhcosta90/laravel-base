@@ -22,7 +22,7 @@ class RoleService
 
     public function index()
     {
-        return app(Role::class)->all();
+        return $this->repository->index();
     }
 
     public function create($data)
