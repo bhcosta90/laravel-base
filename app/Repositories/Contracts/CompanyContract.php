@@ -2,7 +2,8 @@
 
 namespace App\Repositories\Contracts;
 
-interface CompanyContract {
+interface CompanyContract
+{
     public function connectInDatabase($company);
 
     public function createDatabase(string $database);

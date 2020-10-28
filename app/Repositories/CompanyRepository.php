@@ -9,27 +9,29 @@ use BRCas\User\Repositories\UserRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CompanyRepository implements Contracts\CompanyContract {
+class CompanyRepository implements Contracts\CompanyContract
+{
     /**
      * @var UserRepository
      */
     private $user;
-    
+
     public function __construct(UserContract $user)
     {
         $this->user = $user;
     }
 
-    public function connectInDatabase($company){
+    public function connectInDatabase($company)
+    {
         DB::purge('tenant');
-        
+
         config()->set('database.connections.tenant.host', $company->bd_hostname);
         config()->set('database.connections.tenant.database', $company->bd_database);
         config()->set('database.connections.tenant.username', $company->bd_username);
         config()->set('session.files', storage_path("framework/sessions"));
 
         DB::reconnect('tenant');
-        
+
         Schema::connection('tenant')->getConnection()->reconnect();
         return $this;
     }
@@ -41,8 +43,9 @@ class CompanyRepository implements Contracts\CompanyContract {
         return $this;
     }
 
-    public function createDatabase(string $database){
-        if(env('DB_DATABASE') != $database) {
+    public function createDatabase(string $database)
+    {
+        if (env('DB_DATABASE') != $database) {
             DB::statement("
                 CREATE DATABASE IF NOT EXISTS {$database} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
             ");
@@ -52,7 +55,7 @@ class CompanyRepository implements Contracts\CompanyContract {
 
     public function dropDatabase(string $database)
     {
-        if(env('DB_DATABASE') != $database) {
+        if (env('DB_DATABASE') != $database) {
             DB::statement("
                 DROP DATABASE IF EXISTS {$database}
             ");
@@ -68,20 +71,21 @@ class CompanyRepository implements Contracts\CompanyContract {
     public function getDatabaseByDomain(string $domain): ?Company
     {
         $obj = Company::where('domain', $domain)->first();
-        if(empty($obj)){
+        if (empty($obj)) {
             $subDomain = explode('.', $domain);
             $obj = Company::where('domain', $subDomain)->first();
         }
 
-        if(!empty($obj)) return $obj;
+        if (!empty($obj)) return $obj;
 
         return null;
     }
 
-    public function create($data): Company {
+    public function create($data): Company
+    {
         $data['bd_hostname'] = env('DB_HOST');
         $data['bd_username'] = env('DB_USERNAME');
-        $data['bd_database'] = env('DB_DATABASE') ."_". sha1($data['domain']);
+        $data['bd_database'] = env('DB_DATABASE') . "_" . sha1($data['domain']);
 
         $company = Company::create($data);
 

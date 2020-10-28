@@ -2,11 +2,11 @@
 
 namespace App\Forms;
 
-use App\Models\User;
 use Kris\LaravelFormBuilder\Form;
 use Kris\LaravelFormBuilder\Field;
 
-class CompanyUserForm extends Form {
+class CompanyUserForm extends Form
+{
     public function buildForm()
     {
         $this

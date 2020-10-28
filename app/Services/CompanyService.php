@@ -6,8 +6,9 @@ use App\Models\Company;
 use App\Repositories\CompanyRepository;
 use App\Repositories\Contracts\CompanyContract;
 
-class CompanyService  {
-    
+class CompanyService
+{
+
     /**
      * @var CompanyRepository $repository
      */
@@ -43,7 +44,8 @@ class CompanyService  {
         return $this->repository->getDatabaseByDomain($domain);
     }
 
-    public function create($data){
+    public function create($data)
+    {
         return $this->repository->create($data);
     }
 }

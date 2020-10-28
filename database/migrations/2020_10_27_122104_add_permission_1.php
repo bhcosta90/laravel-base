@@ -11,12 +11,12 @@ class AddPermission1 extends Migration
 
     public function permissions(): array
     {
-        return [ 
+        return [
             'Usuário | Relatório',
             'Usuário | Cadastro',
             'Usuário | Edição',
             'Usuário | Excluir',
-            
+
             'Grupo | Relatório',
             'Grupo | Cadastro',
             'Grupo | Edição',

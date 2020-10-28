@@ -42,7 +42,7 @@ class MigrateDatabase implements ShouldQueue
         $objServiceCompany = app(CompanyService::class);
 
         $company = $this->company;
-        
+
         $objServiceCompany->createDatabase($company->bd_database);
         $objServiceCompany->alterConfig($company);
         Artisan::call('company:migrate', ['--id' => $company->id]);

@@ -49,13 +49,13 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                
+
                 @if (Session::has('error') && Session::get("error"))
                     <div class="alert alert-warning" role="alert">
                         {{ Session::get("error") }}
                     </div>
                 @endif
-                
+
                 <div class="{{ config('adminlte.classes_content') ?: $def_container_class }}">
                     @yield('content')
                 </div>

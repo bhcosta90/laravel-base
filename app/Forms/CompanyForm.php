@@ -5,7 +5,8 @@ namespace App\Forms;
 use Kris\LaravelFormBuilder\Form;
 use Kris\LaravelFormBuilder\Field;
 
-class CompanyForm extends Form {
+class CompanyForm extends Form
+{
     public function buildForm()
     {
         $this

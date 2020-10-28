@@ -7,8 +7,9 @@ use App\Repositories\RoleRepository;
 use Spatie\Permission\Models\Role;
 
 
-class RoleService {
-    
+class RoleService
+{
+
     /**
      * @var RoleRepository $repository
      */
@@ -40,7 +41,8 @@ class RoleService {
         $this->repository->edit($obj, $data);
     }
 
-    public function destroy($obj){
+    public function destroy($obj)
+    {
         $obj->delete();
     }
 }

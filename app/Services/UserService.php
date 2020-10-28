@@ -6,7 +6,8 @@ use App\Models\User;
 use App\Repositories\Contracts\UserContract;
 use BRCas\User\Services\UserService as ServicesUserService;
 
-class UserService extends ServicesUserService implements UserContract  {
+class UserService extends ServicesUserService implements UserContract
+{
 
     protected $repository;
 
@@ -20,10 +21,10 @@ class UserService extends ServicesUserService implements UserContract  {
         /**
          * @var User;
          */
-        if($objUser = auth()->user()){
+        if ($objUser = auth()->user()) {
 
-            foreach($obj->permissions as $permission){
-                if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
+            foreach ($obj->permissions as $permission) {
+                if ($objUser->can($permission->name) == false) $permissions[] = $permission->id;
             }
 
             $obj->syncPermissions($permissions);
@@ -35,9 +36,9 @@ class UserService extends ServicesUserService implements UserContract  {
         /**
          * @var User
          */
-        if(($objUser = auth()->user()) && $objUser->can('Grupo | Vincular ao Usuário')){
-            foreach($obj->permissions as $permission){
-                if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
+        if (($objUser = auth()->user()) && $objUser->can('Grupo | Vincular ao Usuário')) {
+            foreach ($obj->permissions as $permission) {
+                if ($objUser->can($permission->name) == false) $permissions[] = $permission->id;
             }
 
             $obj->syncRoles($groups);
@@ -54,7 +55,8 @@ class UserService extends ServicesUserService implements UserContract  {
         return $obj;
     }
 
-    public function edit($obj, $data){
+    public function edit($obj, $data)
+    {
         $this->repository->edit($obj, $data);
 
         $this->registerPermissions($obj, $data['permissions'] ?? []);

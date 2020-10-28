@@ -19,12 +19,12 @@ Route::get('/', [Controller::class, 'welcome']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin'], function () {
     Auth::routes(['register' => false]);
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function(){
-    Route::group(['prefix' => 'users', 'as' => 'users.'], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::resource('roles', RoleController::class)->except(['show']);
     });
 });

@@ -33,7 +33,7 @@ return [
     ],
     "permissions" => [
         "user" => [
-            "index" =>  "Usuário | Relatório",
+            "index" => "Usuário | Relatório",
             "edit" => "Usuário | Edição",
             "create" => "Usuário | Cadastro",
             "delete" => "Usuário | Excluir",

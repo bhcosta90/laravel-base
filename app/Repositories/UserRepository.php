@@ -6,17 +6,18 @@ use BRCas\User\Repositories\UserRepository as RepositoriesUserRepository;
 use Spatie\Permission\Models\Role;
 
 
-class UserRepository extends RepositoriesUserRepository implements Contracts\UserContract{
-    
+class UserRepository extends RepositoriesUserRepository implements Contracts\UserContract
+{
+
     public function registerPermissions($obj, array $permissions)
     {
         /**
          * @var User;
          */
-        if($objUser = auth()->user()){
+        if ($objUser = auth()->user()) {
 
-            foreach($obj->permissions as $permission){
-                if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
+            foreach ($obj->permissions as $permission) {
+                if ($objUser->can($permission->name) == false) $permissions[] = $permission->id;
             }
 
             $obj->syncPermissions($permissions);
@@ -28,9 +29,9 @@ class UserRepository extends RepositoriesUserRepository implements Contracts\Use
         /**
          * @var User
          */
-        if(($objUser = auth()->user()) && $objUser->can('Grupo | Vincular ao Usuário')){
-            foreach($obj->permissions as $permission){
-                if($objUser->can($permission->name) == false) $permissions[] = $permission->id;
+        if (($objUser = auth()->user()) && $objUser->can('Grupo | Vincular ao Usuário')) {
+            foreach ($obj->permissions as $permission) {
+                if ($objUser->can($permission->name) == false) $permissions[] = $permission->id;
             }
 
             $obj->syncRoles($groups);

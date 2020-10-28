@@ -6,7 +6,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-trait Permission{
+trait Permission
+{
     public abstract function permissions(): array;
 
     /**
@@ -20,7 +21,7 @@ trait Permission{
 
         $permissions = [];
 
-        foreach($this->permissions() as $permission){
+        foreach ($this->permissions() as $permission) {
             // DB::table($tableNames['permissions'])->insert([
             //     'name' => $permission,
             //     'guard_name' => 'web',

@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $total = 20;
-        if(User::count() == 0) {
+        if (User::count() == 0) {
             User::factory()->create(['email' => 'admin@admin.com', 'name' => 'Administrador Geral']);
             $total--;
         }
-        
+
         User::factory($total)->create();
     }
 }
