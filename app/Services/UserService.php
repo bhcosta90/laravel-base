@@ -4,9 +4,10 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\Contracts\UserContract;
+use BRCas\Laravel\Contracts\{Create, Destroy, Edit, Index};
 use BRCas\User\Services\UserService as ServicesUserService;
 
-class UserService extends ServicesUserService implements UserContract
+class UserService extends ServicesUserService implements UserContract, Index, Create, Destroy, Edit
 {
 
     protected $repository;

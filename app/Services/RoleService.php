@@ -4,10 +4,10 @@ namespace App\Services;
 
 use App\Repositories\Contracts\RoleContract;
 use App\Repositories\RoleRepository;
-use Spatie\Permission\Models\Role;
+use BRCas\Laravel\Contracts\{Create, Destroy, Edit, Index};
 
 
-class RoleService
+class RoleService implements Index, Create, Destroy, Edit
 {
 
     /**
