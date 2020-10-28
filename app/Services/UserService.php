@@ -26,7 +26,7 @@ class UserService extends ServicesUserService implements UserContract
         return $obj;
     }
 
-    public function registerPermissions($obj, array $permissions)
+    private function registerPermissions($obj, array $permissions)
     {
         /**
          * @var User;
@@ -41,7 +41,7 @@ class UserService extends ServicesUserService implements UserContract
         }
     }
 
-    public function registerRoles($obj, array $groups)
+    private function registerRoles($obj, array $groups)
     {
         /**
          * @var User
