@@ -56,6 +56,13 @@
                     </div>
                 @endif
 
+                @if (Session::has('success') && Session::get("success"))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get("success") }}
+                    </div>
+                @endif
+
+
                 <div class="{{ config('adminlte.classes_content') ?: $def_container_class }}">
                     @yield('content')
                 </div>
