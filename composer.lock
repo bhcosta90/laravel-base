@@ -137,16 +137,16 @@
         },
         {
             "name": "bhcosta90/laravel-user",
-            "version": "0.2.3",
+            "version": "0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/laravel-user.git",
-                "reference": "05436a4aef0ace35486f96b44d892c5d31713bb3"
+                "reference": "ecb8b4fb5b51baa678aa50f15f6fe3af73445e7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/laravel-user/zipball/05436a4aef0ace35486f96b44d892c5d31713bb3",
-                "reference": "05436a4aef0ace35486f96b44d892c5d31713bb3",
+                "url": "https://api.github.com/repos/bhcosta90/laravel-user/zipball/ecb8b4fb5b51baa678aa50f15f6fe3af73445e7a",
+                "reference": "ecb8b4fb5b51baa678aa50f15f6fe3af73445e7a",
                 "shasum": ""
             },
             "require": {
@@ -166,7 +166,7 @@
                 }
             ],
             "description": "Package to Laravel",
-            "time": "2020-10-28T14:53:30+00:00"
+            "time": "2020-10-29T00:31:11+00:00"
         },
         {
             "name": "brick/math",
