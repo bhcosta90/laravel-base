@@ -443,6 +443,11 @@ return [
                     'asset' => false,
                     'location' => '/css/adminlte.css',
                 ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '/js/adminlte.js',
+                ],
             ],
         ],
     ],

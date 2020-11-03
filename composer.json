@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
-        "bhcosta90/laravel-user": "^0.2",
+        "bhcosta90/laravel-user": "master",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -35,6 +35,7 @@
     },
     "extra": {
         "laravel": {
+            "bhcosta90/laravel-user": "^0.2",
             "dont-discover": [
                 "laravel/telescope"
             ]
