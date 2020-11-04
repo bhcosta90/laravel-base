@@ -137,16 +137,16 @@
         },
         {
             "name": "bhcosta90/laravel-user",
-            "version": "0.2.9",
+            "version": "0.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/laravel-user.git",
-                "reference": "6a1df8580a4c28649181a0eacf5d4e0a3f085395"
+                "reference": "6f946715c12ce02c9aaf5a1cb03f00782a7c7ec3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/laravel-user/zipball/6a1df8580a4c28649181a0eacf5d4e0a3f085395",
-                "reference": "6a1df8580a4c28649181a0eacf5d4e0a3f085395",
+                "url": "https://api.github.com/repos/bhcosta90/laravel-user/zipball/6f946715c12ce02c9aaf5a1cb03f00782a7c7ec3",
+                "reference": "6f946715c12ce02c9aaf5a1cb03f00782a7c7ec3",
                 "shasum": ""
             },
             "require": {
@@ -177,7 +177,7 @@
                 "laravel",
                 "user"
             ],
-            "time": "2020-11-04T00:31:00+00:00"
+            "time": "2020-11-04T01:01:56+00:00"
         },
         {
             "name": "brick/math",
