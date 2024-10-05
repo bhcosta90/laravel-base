@@ -32,7 +32,7 @@ describe('App/Livewire/Auth/Login -> Feature', function () {
             ->call('submit')
             ->assertHasNoErrors()
             ->assertRedirectToRoute('dashboard')
-            ->assertSessionHas('notification::message', __('You have successfully logged in.'));
+            ->assertSessionHas('notification::message::success', __('You have successfully logged in.'));
 
         expect(auth()->id())->toBe($user->id);
         Event::assertDispatched(Illuminate\Auth\Events\Login::class);

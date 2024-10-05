@@ -17,9 +17,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name'  => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (User::whereEmail($email = 'owner@gmail.com')->doesntExist()) {
+            User::factory()->create([
+                'name'  => 'Test User',
+                'email' => 'owner@gmail.com',
+            ]);
+        }
     }
 }

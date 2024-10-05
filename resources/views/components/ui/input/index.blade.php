@@ -29,7 +29,11 @@
             {{ $attributes->merge([
                 'id'          => $id,
                 'name'        => $name,
-                'type'        => $attributes->has('password') ? 'password' : 'text',
+                'type'        => match(true) {
+                    $attributes->has('password') => 'password',
+                    $attributes->has('email') => 'email',
+                    default => 'text',
+                },
                 'placeholder' => $placeholder,
                 'autocomplete' => 'off'
             ])->class([

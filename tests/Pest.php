@@ -16,7 +16,7 @@ declare(strict_types = 1);
 use Livewire\Features\SupportTesting\Testable;
 
 pest()->extend(Tests\TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+    ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
 
 /*
