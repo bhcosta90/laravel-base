@@ -33,3 +33,7 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan test
+    - name: Execute Pint
+      run: ./vendor/bin/pint
+    - name: Execute Stan
+      run: ./vendor/bin/phpstan analyse --memory-limit=2G

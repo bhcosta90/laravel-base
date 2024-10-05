@@ -10,4 +10,6 @@ Route::get('/', function () {
 
 include __DIR__ . '/auth.php';
 
-Route::get('dashboard')->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('dashboard', fn () => 'dashboard')->name('dashboard');
+});
