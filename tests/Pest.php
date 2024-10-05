@@ -13,6 +13,8 @@ declare(strict_types = 1);
 |
 */
 
+use Livewire\Features\SupportTesting\Testable;
+
 pest()->extend(Tests\TestCase::class)
  // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
@@ -43,7 +45,10 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
-{
-    // ..
-}
+Testable::macro('toBeValidate', function (array $data, $errors, $action = 'submit', $debug = false) {
+    $this->set($data)
+        ->call($action)
+        ->assertHasErrors($errors, $debug);
+
+    return $this;
+});
