@@ -6,7 +6,7 @@
 
         <title>{{ $title ?? 'Page Title' }}</title>
     </head>
-    <body>
+    <body data-theme="nord">
         {{ $slot }}
     </body>
 </html>

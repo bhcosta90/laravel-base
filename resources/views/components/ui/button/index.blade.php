@@ -28,6 +28,7 @@
     'withLoading' => false,
     'href' => false,
     'white' => false,
+    'full' => false,
 ])
 
 @php
@@ -43,7 +44,7 @@
 @endphp
 
 <button
-    {{ $attributes->merge(['type' => 'button'])->class([
+    {{ $attributes->merge(['type' => 'submit'])->class([
         'btn normal-case rounded',
         'flex items-center' => !$href,
         'btn-primary' => $primary,
@@ -70,6 +71,7 @@
         'btn-circle' => $circle,
         'btn-square' => $square,
         'bg-text-0 hover:bg-text-800 hover:text-text-0' => $white,
+        'w-full' => $full,
     ]) }}
     wire:loading.attr="disabled">
     @if ($icon)

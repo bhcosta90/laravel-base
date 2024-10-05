@@ -2,19 +2,22 @@
     'success' => null,
     'info' => null,
     'warning' => null,
-    'danger' => null,
+    'error' => null,
     'dismissible' => null,
     'icon' => null,
     'sm' => null,
+    'text' => null,
+    'center' => false,
 ])
 
 <div {{ $attributes->class([
-    'flex gap-2 items-center rounded-md border text-sm p-4',
-    'bg-green-50 border-green-500 dark:bg-secondary-800 dark:border-green-600 text-green-800 dark:text-green-600' => $success,
-    'bg-info-content-100 border-info-content-600 dark:bg-secondary-800 dark:border-blue-600 text-info-content-600 dark:text-blue-600' => $info,
-    'bg-yellow-50 border-yellow-500 dark:bg-secondary-800 dark:border-yellow-600 text-yellow-600 dark:text-yellow-600' => $warning,
-    'bg-red-50 border-red-500 dark:bg-secondary-800 dark:border-red-600 text-red-800 dark:text-red-600' => $danger,
+    'alert rounded-md',
+    'alert-success' => $success,
+    'alert-info' => $info,
+    'alert-warning' => $warning,
+    'alert-error text-white' => $error,
     '!p-2' => $sm,
+    'flex justify-center' => $center,
 ]) }}
      @if($dismissible)
          x-transition:enter="transition ease-out duration-1000"
@@ -34,5 +37,5 @@
     @if ($icon)
         <x-ui.icon :name="$icon" />
     @endif
-    <div>{{ $slot }}</div>
+    <span class="text-center">{{ $slot->isEmpty() ? $text : $slot }}</span>
 </div>
