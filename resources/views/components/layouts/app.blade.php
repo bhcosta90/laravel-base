@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>{{ $title ?? 'Page Title' }}</title>
-        @vite(['resources/css/admin.css', 'resources/js/admin.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/admin.css', 'resources/js/admin.js'])
     </head>
     <body data-theme="nord" class="flex flex-col font-sans antialiased min-h-full max-w-screen">
         <x-dev.bar />
