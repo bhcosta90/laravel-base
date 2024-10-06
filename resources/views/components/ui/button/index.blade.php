@@ -29,6 +29,7 @@
     'href' => false,
     'white' => false,
     'full' => false,
+    'join' => false,
 ])
 
 @php
@@ -72,6 +73,7 @@
         'btn-square' => $square,
         'bg-text-0 hover:bg-text-800 hover:text-text-0' => $white,
         'w-full' => $full,
+        'join-item' => $join,
     ]) }}
     wire:loading.attr="disabled">
     @if ($icon)

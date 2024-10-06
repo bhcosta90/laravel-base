@@ -6,6 +6,7 @@ use App\Dev\Livewire\Login;
 
 use App\Models\User;
 
+use function Pest\Laravel\actingAs;
 use function Pest\Livewire\livewire;
 
 describe('App/Dev/Livewire/Login -> Feature', function () {
@@ -38,5 +39,17 @@ describe('App/Dev/Livewire/Login -> Feature', function () {
             ->assertSessionHas('notification::message::success', __('You have successfully logged in.'));
 
         expect(auth()->id())->toBe($user->id);
+    });
+
+    test('logs out authenticated user and redirects to login', function () {
+        $user = User::factory()->create();
+        actingAs($user);
+
+        livewire(Login::class)
+            ->set('user')
+            ->call('submit')
+            ->assertRedirectToRoute('login');
+
+        expect(auth()->check())->toBeFalse();
     });
 });

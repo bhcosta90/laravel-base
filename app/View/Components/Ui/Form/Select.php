@@ -13,11 +13,14 @@ class Select extends Component
 {
     public array $data = [];
 
+    public array $field = ['name', 'id'];
+
     public function __construct(
-        protected ?Builder $builder = null
+        protected ?Builder $queryBuilder = null,
+        public bool $join = false
     ) {
-        if ($this->builder) {
-            $this->data = $this->builder->pluck('name', 'id')->toArray();
+        if ($this->queryBuilder instanceof Builder) {
+            $this->data = $this->queryBuilder->pluck(...$this->field)->toArray();
         }
     }
 

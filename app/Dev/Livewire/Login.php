@@ -25,6 +25,8 @@ class Login extends Component
         if (app()->isProduction()) {
             abort(Response::HTTP_FORBIDDEN);
         }
+
+        $this->user = auth()->id();
     }
 
     public function render(): View
@@ -41,10 +43,17 @@ class Login extends Component
     public function submit(): void
     {
         $this->validate([
-            'user' => ['required', Rule::exists('users', 'id')],
+            'user' => ['nullable', Rule::exists('users', 'id')],
         ]);
 
-        Auth::loginUsingId($this->user);
-        $this->redirectRouteMessage('dashboard', 'You have successfully logged in.');
+        if (filled($this->user)) {
+            Auth::loginUsingId($this->user);
+            $this->redirectRouteMessage('dashboard', 'You have successfully logged in.');
+
+            return;
+        }
+
+        Auth::logout();
+        $this->redirectRoute('login');
     }
 }
