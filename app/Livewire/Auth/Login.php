@@ -50,7 +50,6 @@ class Login extends Component
 
         RateLimiter::clear($this->throttleKey());
         $this->redirectRouteMessage('dashboard', 'You have successfully logged in.');
-        $this->redirect(route('dashboard'));
     }
 
     protected function ensureIsNotRateLimited(): bool
