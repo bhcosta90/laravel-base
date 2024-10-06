@@ -6,9 +6,7 @@
                 <x-table.id />
                 <x-table.th label="Name" />
                 <x-table.th label="Email" />
-                @can('impersonate', User::class)
-                    <x-table.th action></x-table.th>
-                @endcan
+                <x-table.th action></x-table.th>
             </x-table.row>
         </x-table.head>
         <x-table.body>
@@ -21,15 +19,14 @@
                             {{ $record->email }}
                         </x-ui.link>
                     </x-table.td>
-                    @can('impersonate', $record)
-                        <x-table.td>
-                            <x-ui.button
-                                label="Impersonate"
-                                @click="$dispatch('user::impersonate', { user: {{ $record->id }} })"
-                                xs
-                            />
-                        </x-table.td>
-                    @endcan
+                    <x-table.td>
+                        <x-ui.button
+                            :disabled="!auth()->user()->can('impersonate', $record)"
+                            label="Impersonate"
+                            @click="$dispatch('user::impersonate', { user: {{ $record->id }} })"
+                            xs
+                        />
+                    </x-table.td>
                 </x-table.row>
             @endforeach
         </x-table.body>

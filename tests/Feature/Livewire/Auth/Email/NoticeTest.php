@@ -12,6 +12,7 @@ use function Pest\Livewire\livewire;
 
 describe('Livewire/Auth/Email/Notice -> Feature', function () {
     it('should redirect user to this page if verification is missing', function () {
+
         $user = User::factory()->unverified()->create();
 
         actingAs($user);

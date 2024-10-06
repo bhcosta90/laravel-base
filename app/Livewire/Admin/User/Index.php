@@ -32,6 +32,7 @@ class Index extends Component
     public function records(): Paginator
     {
         return User::query()
+            ->select(['id', 'name', 'email'])
             ->filter(['name', 'email'], $this->search)
             ->orderBy('name')
             ->orderBy('email')

@@ -13,11 +13,11 @@ class UserPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->id < 5;
+        return $user->id % 2 === 1 || $user->id < 5;
     }
 
     public function impersonate(User $user, ?User $userActual = null): bool
     {
-        return $user->id === 1 && !$user->is($userActual);
+        return $user->id < 5 && !$user->is($userActual);
     }
 }

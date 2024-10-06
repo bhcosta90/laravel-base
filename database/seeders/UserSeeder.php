@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory(5)->unverified()->create([
+        User::factory(30)->create([
             'created_at' => now()->addSecond(),
         ]);
     }

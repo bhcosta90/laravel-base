@@ -33,6 +33,8 @@ class Impersonate extends Component
             throw new InvalidImpersonationException('You cannot impersonate yourself.');
         }
 
+        $this->authorize('impersonate', $user);
+
         session()->put('impersonator', auth()->user()->id);
         session()->put('impersonate', $user->id);
 
