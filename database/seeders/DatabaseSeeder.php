@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
 
         if (User::whereEmail($email = 'owner@gmail.com')->doesntExist()) {
             User::factory()->create([
-                'name'  => 'Test User',
-                'email' => 'owner@gmail.com',
+                'name'  => 'Owner User',
+                'email' => $email,
             ]);
         }
     }
