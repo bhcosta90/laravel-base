@@ -4,5 +4,9 @@
             <livewire:dev.env />
             <livewire:dev.login />
         </div>
+
+        <div>
+            <livewire:admin.user.impersonate />
+        </div>
     @endif
 </span>

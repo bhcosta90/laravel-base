@@ -11,8 +11,9 @@ return [
         'title'   => 'Admin',
         'submenu' => [
             [
-                'title' => 'User',
-                'route' => 'admin.user',
+                'title'      => 'User',
+                'route'      => 'admin.user',
+                'permission' => ['viewAny', 'App\Models\User'],
             ],
         ],
     ],

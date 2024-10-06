@@ -1,4 +1,7 @@
-<div class="relative flex flex-1" action="#" method="GET" x-data="tagsComponent()">
+<div
+    class="relative flex flex-1"
+    x-data="tagsComponent({{ json_encode(request()->get('search'))}})"
+>
     <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
          viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd"
@@ -20,7 +23,7 @@
                     <input
                         x-ref="tagInput"
                         type="text"
-                        placeholder="Add a tag"
+                        placeholder="Add a search"
                         @keydown.enter.prevent="addTag($event)"
                         class="flex-1 h-full w-full border-none focus:outline-none p- border-l-0"
                         :value="hasWireModel ? $wire.entangle(modelValue) : ''"

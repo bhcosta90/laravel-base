@@ -4,7 +4,9 @@
     'xs' => false,
 ])
 
-<a {{ $attributes }} wire:navigate @class([
+<a {{ $attributes->merge([
+    'wire:navigate' => !$attributes->has('navigate'),
+]) }} @class([
     'link',
     'link-info' => $info,
     'text-accent' => $neutral,

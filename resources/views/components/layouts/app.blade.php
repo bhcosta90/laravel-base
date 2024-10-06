@@ -18,7 +18,9 @@
                         <x-layouts.partials.navigation.separator />
 
                         <div class="flex flex-1 justify-end gap-x-4 self-stretch lg:gap-x-6">
-                            <x-layouts.partials.global-search />
+                            @if($globalSearch ?? false)
+                                <x-layouts.partials.global-search />
+                            @endif
                             <div class="flex items-center gap-x-4 lg:gap-x-6">
                                 <x-layouts.partials.notifications />
                                 <x-layouts.partials.navigation.separator />

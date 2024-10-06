@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-use App\Http\Middleware\EmailIsUnverifiedMiddleware;
+use App\Http\Middleware\{EmailIsUnverifiedMiddleware, ImpersonateMiddleware};
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\{Exceptions, Middleware};
 
@@ -15,6 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'unverified' => EmailIsUnverifiedMiddleware::class,
+        ]);
+
+        $middleware->web(append: [
+            ImpersonateMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

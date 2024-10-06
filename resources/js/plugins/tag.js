@@ -1,5 +1,5 @@
-export default () => ({
-    tags: [],
+export default (initialData = {}) => ({
+    tags: Array.isArray(initialData) ? initialData : [],
     hasWireModel: false,
     modelValue: null,
     init() {
@@ -15,6 +15,7 @@ export default () => ({
             if (this.hasWireModel) {
                 this.$wire.set(this.modelValue, this.tags);
             }
+            this.sendEvent();
         }
         event.target.value = '';
     },
@@ -23,15 +24,17 @@ export default () => ({
         if (this.hasWireModel) {
             this.$wire.set(this.modelValue, this.tags);
         }
+        this.sendEvent();
     },
     addTagFromButton() {
         const tagValue = this.$refs.tagInput.value.trim();
         if (tagValue && !this.tags.includes(tagValue)) {
             this.tags.push(tagValue);
+            this.sendEvent();
         }
         this.$refs.tagInput.value = ''; // Limpa o input
     },
     sendEvent() {
-        this.dispatch('tag-search', this.tags);
+        this.$dispatch('tag-search', {'tags': this.tags});
     }
 })
