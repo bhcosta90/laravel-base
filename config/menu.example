@@ -1,0 +1,61 @@
+<?php
+
+declare(strict_types = 1);
+
+use App\Models\User;
+
+return [
+    [
+        'title' => 'Dashboard',
+        'route' => 'admin',
+    ],
+    [
+        'title'   => 'With submenu',
+        'submenu' => [
+            [
+                'title'   => 'Submenu 1',
+                'route'   => 'admin',
+                'submenu' => [
+                    [
+                        'title' => 'Submenu 3',
+                        'route' => 'admin',
+                    ],
+                    [
+                        'title' => 'Submenu 4',
+                        'route' => 'admin',
+                    ],
+                ],
+            ],
+            [
+                'title' => 'Submenu 2',
+                'route' => 'admin',
+            ],
+        ],
+    ],
+    [
+        'title'   => 'With permission',
+        'route'   => 'admin',
+        'submenu' => [
+            [
+                'title'   => 'Submenu 1',
+                'route'   => 'admin',
+                'submenu' => [
+                    [
+                        'title' => 'Submenu 3',
+                        'route' => 'admin',
+                    ],
+                    [
+                        'title'      => 'Submenu 4',
+                        'route'      => 'admin',
+                        'permission' => ['user2', User::class],
+                    ],
+                ],
+            ],
+            [
+                'title'      => 'Submenu 2',
+                'route'      => 'admin',
+                'permission' => ['user3', User::class],
+            ],
+        ],
+    ],
+];

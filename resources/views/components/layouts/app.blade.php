@@ -5,12 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>{{ $title ?? 'Page Title' }}</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/admin.css', 'resources/js/admin.js'])
     </head>
     <body data-theme="nord" class="flex flex-col font-sans antialiased min-h-full max-w-screen">
         <x-dev.bar />
         <div class="flex flex-col w-full min-h-screen bg-gray-100 dark:bg-gray-900" x-data="{ sidebarOpen: false }">
-            <div class="flex w-full ">
+            <div class="flex grow bg-primary-content-50">
                 <x-layouts.partials.navigation />
                 <div class="flex flex-col w-full">
                     <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">

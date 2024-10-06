@@ -4,7 +4,13 @@ declare(strict_types = 1);
 
 namespace App\Providers;
 
+use App\Actions\VerifyMenu;
 use App\Dev\Provider\DevServiceProvider;
+
+use function auth;
+
+use Illuminate\Support\Facades\Route;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
         if (!$this->app->environment('production')) {
             $this->app->register(DevServiceProvider::class);
         }
+
+        $this->app->bind(VerifyMenu::class, function () {
+            return new VerifyMenu(auth()->user(), Route::currentRouteName());
+        });
     }
 
     /**
