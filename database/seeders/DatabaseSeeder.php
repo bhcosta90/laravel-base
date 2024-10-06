@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
                 'email' => $email,
             ]);
         }
+
+        $this->call([
+            UserSeeder::class,
+        ]);
     }
 }

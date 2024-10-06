@@ -11,6 +11,6 @@ Route::get('/', function () {
 
 include __DIR__ . '/auth.php';
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', Livewire\Dashboard::class)->name('dashboard');
 });

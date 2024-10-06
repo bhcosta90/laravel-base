@@ -37,7 +37,7 @@ class Login extends Component
     #[Computed]
     public function users(): Builder
     {
-        return User::query()->orderBy('name');
+        return User::query()->orderBy('created_at');
     }
 
     public function submit(): void
