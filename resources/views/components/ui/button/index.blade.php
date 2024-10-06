@@ -45,7 +45,7 @@
 @endphp
 
 <button
-    {{ $attributes->merge(['type' => 'submit'])->class([
+    {{ $attributes->merge(['type' => $attributes->has('button') ? 'button' : 'submit'])->class([
         'btn normal-case rounded',
         'flex items-center' => !$href,
         'btn-primary' => $primary,
