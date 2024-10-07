@@ -20,4 +20,14 @@ class UserPolicy
     {
         return $user->id < 5 && !$user->is($userActual);
     }
+
+    public function create(User $user): bool
+    {
+        return $user->id < 5;
+    }
+
+    public function edit(User $user): bool
+    {
+        return $user->id < 5;
+    }
 }

@@ -1,5 +1,10 @@
 @php use App\Models\User; @endphp
-<div>
+<div class="space-y-4">
+
+    <div class="flex justify-end">
+        <livewire:admin.user.user-manager />
+    </div>
+
     <x-table :records="$this->records">
         <x-table.head>
             <x-table.row>
