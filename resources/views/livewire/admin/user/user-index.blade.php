@@ -12,6 +12,8 @@
                 <x-table.th label="Name" />
                 <x-table.th label="Email" />
                 <x-table.th action></x-table.th>
+                <x-table.th action></x-table.th>
+                <x-table.th action></x-table.th>
             </x-table.row>
         </x-table.head>
         <x-table.body>
@@ -30,6 +32,23 @@
                             label="Impersonate"
                             @click="$dispatch('user::impersonate', { user: {{ $record->id }} })"
                             xs
+                        />
+                    </x-table.td>
+                    <x-table.td>
+                        <x-ui.button
+                            :disabled="!auth()->user()->can('update', $record)"
+                            label="Edit"
+                            @click="$dispatch('handle-manager::load', { id: {{ $record->id }} })"
+                            xs
+                            secondary
+                        />
+                    </x-table.td>
+                    <x-table.td>
+                        <x-ui.button
+                            :disabled="!auth()->user()->can('delete', $record)"
+                            label="Delete"
+                            xs
+                            warning
                         />
                     </x-table.td>
                 </x-table.row>

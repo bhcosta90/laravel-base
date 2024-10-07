@@ -6,6 +6,7 @@ namespace App\Livewire\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\Attributes\On;
 
 trait HandleManager
 {
@@ -15,9 +16,11 @@ trait HandleManager
 
     public bool $open = false;
 
-    public function load(Model $model): void
+    #[On('handle-manager::load')]
+    public function load(int $id): void
     {
-        $this->model = $model;
+        $m           = $this->getModel();
+        $this->model = (new $m())->findOrFail($id);
         $this->open  = true;
         $this->updatedOpen();
     }
