@@ -4,15 +4,19 @@ declare(strict_types = 1);
 
 namespace App\Livewire\Admin\User;
 
-use App\Livewire\Traits\HandleManager;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class UserManager extends Component
 {
-    use HandleManager;
+    use AuthorizesRequests;
+
+    public bool $open = false;
+
+    public ?User $user = null;
 
     public string $password = '';
 
@@ -28,37 +32,44 @@ class UserManager extends Component
         $this->validate();
 
         if ($this->password && $this->password_confirmation && $this->password === $this->password_confirmation) {
-            $this->model->fill([
-                'password' => $this->password,
-            ]);
+            $this->user->password = $this->password;
         }
 
-        $this->model->save();
+        $this->user->save();
+    }
+
+    public function load(User $user): void
+    {
+        $this->user = $user;
+        $this->open = true;
+        $this->updatedOpen();
+    }
+
+    public function updatedOpen(): void
+    {
+        $this->user?->id
+            ? $this->authorize('update', $this->user)
+            : $this->authorize('create', $this->user = new User());
     }
 
     protected function rules(): array
     {
         return [
-            'open'        => 'required|in:1',
-            'model.name'  => 'required|string|max:120',
-            'model.email' => [
+            'open'       => 'required|in:1',
+            'user.name'  => 'required|string|max:120',
+            'user.email' => [
                 'required',
                 'email:rfc,filter,dns',
                 'max:120',
-                Rule::unique('users', 'email')->ignore($id = $this->model?->id),
+                Rule::unique('users', 'email')->ignore($this->user?->id),
             ],
             'password' => [
                 'nullable',
                 'sometimes',
                 'confirmed',
                 'min:8',
-                Rule::requiredIf(!$id),
+                Rule::requiredIf(!$this->user?->id),
             ],
         ];
-    }
-
-    protected function getModel(): string
-    {
-        return User::class;
     }
 }

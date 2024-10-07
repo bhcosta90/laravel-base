@@ -21,8 +21,8 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
         livewire(UserManager::class)
             ->toBeValidate([], [
                 'open',
-                'model.name',
-                'model.email',
+                'user.name',
+                'user.email',
                 'password',
             ])
             ->toBeValidate([
@@ -31,29 +31,29 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
                 'open',
             ])
             ->toBeValidate([
-                'open'       => true,
-                'model.name' => str_repeat('a', 121),
+                'open'      => true,
+                'user.name' => str_repeat('a', 121),
             ], [
-                'model.name',
+                'user.name',
             ])
             ->toBeValidate([
-                'model.name'  => $user->name,
-                'model.email' => str_repeat('a', 121),
+                'user.name'  => $user->name,
+                'user.email' => str_repeat('a', 121),
             ], [
-                'model.email',
+                'user.email',
             ])
             ->toBeValidate([
-                'model.email' => 'a',
+                'user.email' => 'a',
             ], [
-                'model.email',
+                'user.email',
             ])
             ->toBeValidate([
-                'model.email' => $userCreated->email,
+                'user.email' => $userCreated->email,
             ], [
-                'model.email',
+                'user.email',
             ])
             ->toBeValidate([
-                'model.email' => $user->email,
+                'user.email' => $user->email,
             ], [
                 'password',
             ])
@@ -70,7 +70,7 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
             ->toBeValidate([
                 'password' => 'testing123',
             ], [])
-            ->set('model', $user->toArray())
+            ->set('user', $user->toArray())
             ->set('password', 'testing123')
             ->set('password_confirmation', 'testing123')
             ->call('submit')
@@ -90,7 +90,7 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
         livewire(UserManager::class)
             ->call('load', $userCreated)
             ->assertSet('open', true)
-            ->set('model.email', $user->email)
+            ->set('user.email', $user->email)
             ->call('submit')
             ->assertHasNoErrors()
             ->assertOk();

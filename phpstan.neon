@@ -7,5 +7,3 @@ parameters:
         - app/
 
     level: 5
-    ignoreErrors:
-        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$id#'
