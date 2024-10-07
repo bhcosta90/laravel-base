@@ -15,11 +15,9 @@ trait HandleManager
 
     public bool $open = false;
 
-    public function load(int $id): void
+    public function load(Model $model): void
     {
-        $m = $this->getModel();
-
-        $this->model = (new $m())->find($id);
+        $this->model = $model;
         $this->open  = true;
         $this->updatedOpen();
     }
@@ -29,8 +27,18 @@ trait HandleManager
         $m = $this->getModel();
 
         $this->model?->id
-            ? $this->authorize('edit', $this->model)
-            : $this->authorize('create', $this->model = new $m());
+            ? $this->authorize($this->permissionUpdate(), $this->model)
+            : $this->authorize($this->permissionCreate(), $this->model = new $m());
+    }
+
+    protected function permissionCreate(): string
+    {
+        return 'create';
+    }
+
+    protected function permissionUpdate(): string
+    {
+        return 'update';
     }
 
     abstract protected function getModel(): string;

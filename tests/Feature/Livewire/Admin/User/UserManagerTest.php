@@ -84,7 +84,7 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
         $userCreated = User::factory()->create();
 
         Illuminate\Support\Facades\Gate::shouldReceive('authorize')
-            ->with('edit', $userCreated)
+            ->with('update', $userCreated)
             ->andReturn(true);
 
         livewire(UserManager::class)

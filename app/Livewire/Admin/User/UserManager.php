@@ -45,14 +45,14 @@ class UserManager extends Component
                 'required',
                 'email:rfc,filter,dns',
                 'max:120',
-                Rule::unique('users', 'email')->ignore($this->model?->id),
+                Rule::unique('users', 'email')->ignore($id = $this->model?->id),
             ],
             'password' => [
                 'nullable',
                 'sometimes',
                 'confirmed',
                 'min:8',
-                Rule::requiredIf(!$this->model?->id),
+                Rule::requiredIf(!$id),
             ],
         ];
     }
