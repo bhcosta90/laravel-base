@@ -13,7 +13,7 @@ use Livewire\Attributes\{Computed, Layout};
 use Livewire\Component;
 
 #[Layout('components.layouts.app', ['globalSearch' => true])]
-class Index extends Component
+class UserIndex extends Component
 {
     use Filterable;
     use AuthorizesRequests;
@@ -25,7 +25,7 @@ class Index extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.user.index');
+        return view('livewire.admin.user.user-index');
     }
 
     #[Computed]

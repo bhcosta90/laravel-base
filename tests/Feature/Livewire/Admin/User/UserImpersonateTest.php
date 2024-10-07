@@ -3,28 +3,28 @@
 declare(strict_types = 1);
 
 use App\Exceptions\InvalidImpersonationException;
-use App\Livewire\Admin\User\Impersonate;
+use App\Livewire\Admin\User\UserImpersonate;
 
 use App\Models\User;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Livewire\livewire;
 
-describe('Livewire/Admin/User/Impersonate -> Feature', function () {
+describe('Livewire/Admin/User/UserImpersonate -> Feature', function () {
     test('it sets the user correctly based on session data', function () {
-        livewire(Impersonate::class)
+        livewire(UserImpersonate::class)
             ->assertSet('user', null);
 
         $user = User::factory()->create();
         session()->put('impersonate', $user->id);
 
-        livewire(Impersonate::class)
+        livewire(UserImpersonate::class)
             ->assertSet('user.id', $user->id)
             ->assertSee($user->name);
     });
 
     test('it throws an exception when trying to impersonate oneself', function () {
-        livewire(Impersonate::class)
+        livewire(UserImpersonate::class)
             ->call('submit', User::factory()->make())
             ->assertForbidden();
     });
@@ -36,7 +36,7 @@ describe('Livewire/Admin/User/Impersonate -> Feature', function () {
             ->with('impersonate', $user)
             ->andReturn(true);
 
-        expect(fn () => livewire(Impersonate::class)
+        expect(fn () => livewire(UserImpersonate::class)
             ->call('submit', $user))->toThrow(InvalidImpersonationException::class);
     });
 
@@ -48,7 +48,7 @@ describe('Livewire/Admin/User/Impersonate -> Feature', function () {
             ->with('impersonate', $userImpersonate)
             ->andReturn(true);
 
-        livewire(Impersonate::class)
+        livewire(UserImpersonate::class)
             ->call('submit', $userImpersonate)
             ->assertSessionHas('impersonator', $user->id)
             ->assertSessionHas('impersonate', $userImpersonate->id)
@@ -59,7 +59,7 @@ describe('Livewire/Admin/User/Impersonate -> Feature', function () {
         session()->put('impersonator', 1);
         session()->put('impersonate', 1);
 
-        livewire(Impersonate::class)
+        livewire(UserImpersonate::class)
             ->assertSessionHas('impersonator', 1)
             ->assertSessionHas('impersonate', 1)
             ->call('finish')

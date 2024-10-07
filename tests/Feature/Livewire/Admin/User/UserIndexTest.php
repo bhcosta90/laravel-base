@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-use App\Livewire\Admin\User\Index;
+use App\Livewire\Admin\User\UserIndex;
 use App\Models\User;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Livewire\livewire;
 
-describe('Livewire/Admin/User/Index -> Feature', function () {
+describe('Livewire/Admin/User/UserIndex -> Feature', function () {
 
     test('it filters users based on search input', function () {
         actingAs(User::factory()->make());
@@ -23,7 +23,7 @@ describe('Livewire/Admin/User/Index -> Feature', function () {
 
         $user3 = User::factory()->create();
 
-        livewire(Index::class)
+        livewire(UserIndex::class)
             ->assertSee($user1->name)
             ->assertSee($user1->email)
             ->assertSee($user2->name)

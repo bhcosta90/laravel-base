@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class Impersonate extends Component
+class UserImpersonate extends Component
 {
     public ?User $user = null;
 
@@ -23,7 +23,7 @@ class Impersonate extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.user.impersonate');
+        return view('livewire.admin.user.user-impersonate');
     }
 
     #[On('user::impersonate')]
