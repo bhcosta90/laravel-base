@@ -10,36 +10,32 @@ use function Pest\Laravel\{assertDatabaseCount};
 use function Pest\Livewire\livewire;
 
 describe('Livewire/Admin/User/UserManager -> Feature', function () {
+    it('validates open user manager', function () {
+        $userCreated = User::factory()->create();
+
+        livewire(UserManager::class)->toBeValidateManager($userCreated);
+    });
     it('validates user manager fields correctly when create a new user', function () {
         $user        = User::factory()->make(['id' => 1]);
         $userCreated = User::factory()->create();
 
         Illuminate\Support\Facades\Gate::shouldReceive('authorize')
             ->with('create', User::class)
-            ->andReturn(true);
+            ->andReturn(true)
+            ->once();
 
         livewire(UserManager::class)
+            ->set('open', true)
             ->toBeValidate([], [
-                'open',
                 'user.name',
                 'user.email',
                 'password',
             ])
             ->toBeValidate([
-                'open' => false,
-            ], [
-                'open',
-            ])
-            ->toBeValidate([
-                'open'      => true,
-                'user.name' => str_repeat('a', 121),
-            ], [
-                'user.name',
-            ])
-            ->toBeValidate([
-                'user.name'  => $user->name,
+                'user.name'  => str_repeat('a', 121),
                 'user.email' => str_repeat('a', 121),
             ], [
+                'user.name',
                 'user.email',
             ])
             ->toBeValidate([
@@ -85,7 +81,8 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
 
         Illuminate\Support\Facades\Gate::shouldReceive('authorize')
             ->with('update', $userCreated)
-            ->andReturn(true);
+            ->andReturn(true)
+            ->once();
 
         livewire(UserManager::class)
             ->call('load', $userCreated)

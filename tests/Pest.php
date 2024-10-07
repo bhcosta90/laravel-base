@@ -13,6 +13,7 @@ declare(strict_types = 1);
 |
 */
 
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Features\SupportTesting\Testable;
 
 pest()->extend(Tests\TestCase::class)
@@ -49,6 +50,30 @@ Testable::macro('toBeValidate', function (array $data, $errors, $action = 'submi
     $this->set($data)
         ->call($action)
         ->assertHasErrors($errors, $debug);
+
+    return $this;
+});
+
+Testable::macro('toBeValidateManager', function (Model $model, $action = 'submit', $debug = false) {
+    Illuminate\Support\Facades\Gate::shouldReceive('authorize')
+        ->with('create', App\Models\User::class)
+        ->andReturn(true)
+        ->once();
+
+    Illuminate\Support\Facades\Gate::shouldReceive('authorize')
+        ->with('update', $model)
+        ->andReturn(true)
+        ->once();
+
+    $this->call($action)
+        ->assertHasErrors(['open'])
+        ->set('open', false)
+        ->call($action)
+        ->assertHasErrors(['open'])
+        ->call('load', $model)
+        ->assertSet('open', true)
+        ->call($action)
+        ->assertHasNoErrors(['open']);
 
     return $this;
 });
