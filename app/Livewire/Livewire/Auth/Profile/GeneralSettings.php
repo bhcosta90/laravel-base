@@ -27,7 +27,7 @@ class GeneralSettings extends Component
 
         $this->requiredPassword('submit', $token, function () {
             $this->user->save();
-            $this->dispatch('user::success', __('Profile updated successfully.'));
+            $this->dispatch('notify::success', __('Profile updated successfully.'));
         });
     }
 

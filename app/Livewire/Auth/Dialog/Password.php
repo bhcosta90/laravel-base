@@ -25,6 +25,7 @@ class Password extends Component
     public function openModal(): void
     {
         $this->reset('password');
+        $this->resetValidation();
         $this->open = true;
     }
 

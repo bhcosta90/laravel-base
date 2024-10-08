@@ -78,6 +78,7 @@ class UserManager extends Component
                 'sometimes',
                 'confirmed',
                 'min:8',
+                'max:25',
                 Password::default(),
                 Rule::requiredIf(!$id),
             ],
