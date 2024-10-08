@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\View;
 use Laravel\Telescope\AuthorizesRequests;
-use Livewire\Attributes\{Computed, Layout};
+use Livewire\Attributes\{Computed, Layout, On};
 use Livewire\Component;
 
 #[Layout('components.layouts.app', ['globalSearch' => true])]
@@ -28,6 +28,7 @@ class UserIndex extends Component
         return view('livewire.admin.user.user-index');
     }
 
+    #[On('user::index')]
     #[Computed]
     public function records(): Paginator
     {

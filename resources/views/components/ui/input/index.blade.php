@@ -5,7 +5,7 @@
     'sm'          => false,
     'md'          => false,
     'lg'          => false,
-    'error'   => true,
+    'error'       => true,
     'icon'        => false,
 ])
 
@@ -53,10 +53,6 @@
     </div>
 
     @if ($error)
-        @error( $name )
-        <label class="label">
-            <span class="label-alt text-error text-sm">{{ $message }}</span>
-        </label>
-        @enderror
+        <x-ui.error :name="$name" />
     @endif
 </div>

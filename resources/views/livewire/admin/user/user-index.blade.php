@@ -38,7 +38,7 @@
                         <x-ui.button
                             :disabled="!auth()->user()->can('update', $record)"
                             label="Edit"
-                            @click="$dispatch('handle-manager::load', { id: {{ $record->id }} })"
+                            @click="$dispatch('load::manager', { user: {{ $record->id }} })"
                             xs
                             secondary
                         />

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class UserManager extends Component
@@ -29,11 +30,13 @@ class UserManager extends Component
         return view('livewire.admin.user.user-manager');
     }
 
-    public function load(User $user): void
+    #[On('load::manager')]
+    public function load(?User $user): void
     {
         $this->user = $user;
         $this->open = true;
         $this->updatedOpen();
+        $this->resetValidation();
     }
 
     public function updatedOpen(): void
@@ -41,6 +44,8 @@ class UserManager extends Component
         $this->user?->id
             ? $this->authorize('update', $this->user)
             : $this->authorize('create', $this->user = new User());
+
+        $this->reset(['password', 'password_confirmation']);
     }
 
     public function submit(): void
@@ -53,6 +58,12 @@ class UserManager extends Component
 
         $this->user->save();
         $this->open = false;
+        $this->dispatch('user::index');
+    }
+
+    protected function blankModel(): void
+    {
+        $this->user = new User();
     }
 
     protected function rules(): array

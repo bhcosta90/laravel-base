@@ -70,6 +70,7 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
             ->set('password', 'testing123')
             ->set('password_confirmation', 'testing123')
             ->call('submit')
+            ->assertDispatched('user::index')
             ->assertSet('open', false)
             ->assertHasNoErrors();
 
@@ -90,6 +91,7 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
             ->assertSet('open', true)
             ->set('user.email', $user->email)
             ->call('submit')
+            ->assertDispatched('user::index')
             ->assertHasNoErrors()
             ->assertSet('open', false)
             ->assertOk();
