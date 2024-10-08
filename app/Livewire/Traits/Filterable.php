@@ -14,11 +14,11 @@ trait Filterable
     #[Url]
     public array $search = [];
 
-    #[Url(as: 'order-name')]
-    public string $orderName = 'name';
+    #[Url(as: 'sort-name')]
+    public string $sortName = 'name';
 
-    #[Url(as: 'order-direction')]
-    public string $orderDirection = 'asc';
+    #[Url(as: 'sort-direction')]
+    public string $sortDirection = 'asc';
 
     #[On('tag-search')]
     public function syncSearch($tags = []): void
@@ -28,16 +28,16 @@ trait Filterable
 
     public function sortBy(string $name): void
     {
-        $this->orderDirection = $this->orderName === $name
+        $this->sortDirection = $this->sortName === $name
             ? $this->revertSort()
             : 'asc';
-        $this->orderName = $name;
+        $this->sortName = $name;
         $this->resetPage();
     }
 
     protected function revertSort(): string
     {
-        return $this->orderDirection === 'asc'
+        return $this->sortDirection === 'asc'
             ? 'desc'
             : 'asc';
     }

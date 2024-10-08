@@ -35,7 +35,7 @@ class UserIndex extends Component
         return User::query()
             ->select(['id', 'name', 'email'])
             ->filter(['name', 'email'], $this->search)
-            ->orderBy($this->orderName, $this->orderDirection)
+            ->orderBy($this->sortName, $this->sortDirection)
             ->orderBy('email')
             ->paginate(10);
     }
