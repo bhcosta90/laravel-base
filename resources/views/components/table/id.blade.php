@@ -4,7 +4,7 @@
     @if($id)
         <x-table.td :label="$id" />
     @else
-        <x-table.th label="" action />
+        <x-table.th label="ID" name="id" action />
     @endif
 @else
     <!-- Empty Component -->

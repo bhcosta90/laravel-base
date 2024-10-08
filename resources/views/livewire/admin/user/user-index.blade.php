@@ -9,8 +9,8 @@
         <x-table.head>
             <x-table.row>
                 <x-table.id />
-                <x-table.th label="Name" />
-                <x-table.th label="Email" />
+                <x-table.th label="Name" name="name" :$orderName :$orderDirection />
+                <x-table.th label="Email" name="email" :$orderName :$orderDirection />
                 <x-table.th action></x-table.th>
                 <x-table.th action></x-table.th>
                 <x-table.th action></x-table.th>

@@ -1,10 +1,28 @@
 @props([
     'label' => null,
     'action' => null,
+    'name' => null,
+    'orderName' => null,
+    'orderDirection' => null,
 ])
 <th @class([
     'px-3 py-3.5 text-left text-sm font-semibold text-gray-900',
     'w-0' => $action,
-])>
-    {{  $slot->isEmpty() ? $label : $slot }}
+    'cursor-pointer' => $name,
+]) {{ $attributes->merge([
+    'wire:click' => $name ? 'sortBy(\'' . $name . '\')' : null,
+    'wire:target' => $name ? 'sortBy(\'' . $name . '\')' : null,
+]) }}>
+    <div class="whitespace-nowrap">
+        @if($name)
+            <span class="inline-flex items-center space-x-1">
+            @if($orderDirection === 'asc' && $orderName === $name)
+                <x-ui.icon name="chevron-up" class="w-4 h-4 text-gray-500" />
+            @else
+                <x-ui.icon name="chevron-down" class="w-4 h-4 text-gray-500" />
+            @endif
+        </span>
+        @endif
+        {{  $slot->isEmpty() ? $label : $slot }}
+    </div>
 </th>
