@@ -9,6 +9,8 @@
     </head>
     <body data-theme="nord" class="flex flex-col font-sans antialiased min-h-full max-w-screen">
         <x-dev.bar />
+        <livewire:admin.user.user-impersonate />
+
         <div class="flex flex-col w-full min-h-screen bg-gray-100 dark:bg-gray-900" x-data="{ sidebarOpen: false }">
             <div class="flex grow bg-primary-content-50">
                 <x-layouts.partials.navigation />
@@ -18,7 +20,9 @@
                         <x-layouts.partials.navigation.separator />
 
                         <div class="flex flex-1 justify-end gap-x-4 self-stretch lg:gap-x-6">
-                            <x-layouts.partials.global-search />
+                            @if($globalSearch ?? false)
+                                <x-layouts.partials.global-search />
+                            @endif
                             <div class="flex items-center gap-x-4 lg:gap-x-6">
                                 <x-layouts.partials.notifications />
                                 <x-layouts.partials.navigation.separator />

@@ -29,7 +29,7 @@ class Logout extends Component
         return <<<'blade'
             <button class="{{ $class }}" wire:click="logout">
                 @if($withIcon)
-                    <x-ui.icon name="heroicon-arrow-left-circle"
+                    <x-ui.icon name="logout"
                         class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-gray-300"/
                     >
                 @endif
