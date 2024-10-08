@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -77,6 +78,7 @@ class UserManager extends Component
                 'sometimes',
                 'confirmed',
                 'min:8',
+                Password::default(),
                 Rule::requiredIf(!$id),
             ],
         ];
