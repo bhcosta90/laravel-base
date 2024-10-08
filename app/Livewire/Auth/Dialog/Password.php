@@ -11,6 +11,7 @@ use Livewire\Component;
 
 class Password extends Component
 {
+    #[Rule(['bool', 'in:1'])]
     public bool $open = false;
 
     #[Rule('required')]

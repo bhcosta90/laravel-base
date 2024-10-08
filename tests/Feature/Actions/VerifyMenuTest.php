@@ -12,6 +12,27 @@ describe('Actions/VerifyMenu -> Feature', function () {
         actingAs(User::factory()->make());
     });
 
+    test('returns an empty array when user is logged out', function () {
+        auth()->logout();
+
+        $menu = [
+            [
+                'submenu' => [
+                    ['b'],
+                    ['c'],
+                ],
+                'a',
+            ],
+        ];
+
+        $response = app(VerifyMenu::class, [
+            'user' => User::factory()->make(),
+        ])->handle($menu);
+
+        expect($response)->toBeArray()
+            ->toBe([]);
+    });
+
     it('returns the same menu when no permissions are set', function () {
         $menu = [
             [

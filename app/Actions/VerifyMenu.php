@@ -10,12 +10,16 @@ use Illuminate\Contracts\Auth\Access\Authorizable;
 
 class VerifyMenu
 {
-    public function __construct(protected Authorizable $user, public ?string $route = null)
+    public function __construct(protected ?Authorizable $user, public ?string $route = null)
     {
     }
 
     public function handle(array $menu): array
     {
+        if ($this->user === null) {
+            return [];
+        }
+
         return $this->verifyMenu($menu);
     }
 
