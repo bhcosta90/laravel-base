@@ -61,11 +61,6 @@ class UserManager extends Component
         $this->dispatch('user::index');
     }
 
-    protected function blankModel(): void
-    {
-        $this->user = new User();
-    }
-
     protected function rules(): array
     {
         return [

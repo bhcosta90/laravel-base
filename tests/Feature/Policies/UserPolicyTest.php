@@ -30,4 +30,34 @@ describe('Policies/UserPolicy -> Feature', function () {
             ->and($policy->impersonate($user1, $user1))->toBeFalse()
             ->and($policy->impersonate($user3, $user1))->toBeFalse();
     });
+
+    it('allows creating a user if user id is less than 5', function () {
+        $policy = new UserPolicy();
+
+        $user1 = User::factory()->make(['id' => 1]);
+        $user2 = User::factory()->make(['id' => 6]);
+
+        expect($policy->create($user1))->toBeTrue()
+            ->and($policy->create($user2))->toBeFalse();
+    });
+
+    it('allows updating a user if user id is less than 5', function () {
+        $policy = new UserPolicy();
+
+        $user1 = User::factory()->make(['id' => 1]);
+        $user2 = User::factory()->make(['id' => 6]);
+
+        expect($policy->update($user1))->toBeTrue()
+            ->and($policy->update($user2))->toBeFalse();
+    });
+
+    it('allows deleting a user if user id is less than 5', function () {
+        $policy = new UserPolicy();
+
+        $user1 = User::factory()->make(['id' => 1]);
+        $user2 = User::factory()->make(['id' => 6]);
+
+        expect($policy->delete($user1))->toBeTrue()
+            ->and($policy->delete($user2))->toBeFalse();
+    });
 });
