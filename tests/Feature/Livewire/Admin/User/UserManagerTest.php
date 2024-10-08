@@ -70,6 +70,7 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
             ->set('password', 'testing123')
             ->set('password_confirmation', 'testing123')
             ->call('submit')
+            ->assertSet('open', false)
             ->assertHasNoErrors();
 
         assertDatabaseCount('users', 2);
@@ -90,6 +91,7 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
             ->set('user.email', $user->email)
             ->call('submit')
             ->assertHasNoErrors()
+            ->assertSet('open', false)
             ->assertOk();
 
         expect($userCreated->refresh())->email->toBe($user->email);

@@ -16,6 +16,8 @@ class UserManager extends Component
 
     public bool $open = false;
 
+    public bool $open2 = false;
+
     public ?User $user = null;
 
     public string $password = '';
@@ -25,17 +27,6 @@ class UserManager extends Component
     public function render(): View
     {
         return view('livewire.admin.user.user-manager');
-    }
-
-    public function submit(): void
-    {
-        $this->validate();
-
-        if ($this->password && $this->password_confirmation && $this->password === $this->password_confirmation) {
-            $this->user->password = $this->password;
-        }
-
-        $this->user->save();
     }
 
     public function load(User $user): void
@@ -52,6 +43,18 @@ class UserManager extends Component
             : $this->authorize('create', $this->user = new User());
     }
 
+    public function submit(): void
+    {
+        $this->validate();
+
+        if ($this->password && $this->password_confirmation && $this->password === $this->password_confirmation) {
+            $this->user->password = $this->password;
+        }
+
+        $this->user->save();
+        $this->open = false;
+    }
+
     protected function rules(): array
     {
         return [
@@ -61,14 +64,14 @@ class UserManager extends Component
                 'required',
                 'email:rfc,filter,dns',
                 'max:120',
-                Rule::unique('users', 'email')->ignore($this->user?->id),
+                Rule::unique('users', 'email')->ignore($id = $this->user?->id),
             ],
             'password' => [
                 'nullable',
                 'sometimes',
                 'confirmed',
                 'min:8',
-                Rule::requiredIf(!$this->user?->id),
+                Rule::requiredIf(!$id),
             ],
         ];
     }

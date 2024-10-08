@@ -54,9 +54,9 @@ Testable::macro('toBeValidate', function (array $data, $errors, $action = 'submi
     return $this;
 });
 
-Testable::macro('toBeValidateManager', function (Model $model, $action = 'submit', $debug = false) {
+Testable::macro('toBeValidateManager', function (Model $model, $action = 'submit') {
     Illuminate\Support\Facades\Gate::shouldReceive('authorize')
-        ->with('create', App\Models\User::class)
+        ->with('create', get_class($model))
         ->andReturn(true)
         ->once();
 
