@@ -14,9 +14,10 @@
                 <div class="h-full bg-white flex items-center flex-wrap gap-2 rounded w-full
                     focus-within:border-blue-500">
                     <template x-for="(tag, index) in tags" :key="index">
-                        <span class="bg-blue-200 text-blue-800 rounded-lg px-2 py-1 inline-flex items-center">
+                        <span @click="removeTag(index)"
+                            class="bg-blue-200 text-blue-800 rounded-lg px-2 py-1 inline-flex items-center cursor-pointer">
+                            <button class="mr-1 font-bold text-red-600">x</button>
                             <span x-text="tag"></span>
-                            <button @click="removeTag(index)" class="ml-1 text-red-600">x</button>
                         </span>
                     </template>
 
