@@ -39,6 +39,7 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
                 'user.email',
             ])
             ->toBeValidate([
+                'user.name'  => str_repeat('a', 120),
                 'user.email' => 'a',
             ], [
                 'user.email',
@@ -64,8 +65,10 @@ describe('Livewire/Admin/User/UserManager -> Feature', function () {
                 'password',
             ])
             ->toBeValidate([
-                'password' => 'testing123',
-            ], [])
+                'password_confirmation' => 'testing123',
+            ], [
+                'password',
+            ])
             ->set('user', $user->toArray())
             ->set('password', 'testing123')
             ->set('password_confirmation', 'testing123')

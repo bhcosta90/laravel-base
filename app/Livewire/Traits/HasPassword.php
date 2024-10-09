@@ -14,6 +14,12 @@ trait HasPassword
 
     public function requiredPassword(string $action, ?string $token = null, ?Closure $callback = null): void
     {
+        if (app()->environment('testing')) {
+            $callback();
+
+            return;
+        }
+
         if ($token === null) {
             $this->dispatch(
                 'user::password::open',

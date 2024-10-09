@@ -6,7 +6,6 @@ namespace Tests\Feature\Livewire\Traits;
 
 use App\Livewire\Traits\HasPassword;
 use Livewire\Component;
-use Log;
 
 class ComponentHasPasswordFake extends Component
 {
@@ -15,7 +14,7 @@ class ComponentHasPasswordFake extends Component
     public function submit(?string $token = null): void
     {
         $this->requiredPassword('submit', $token, function () {
-            Log::info('testing');
+            //
         });
     }
 

@@ -33,6 +33,7 @@ class Password extends Component
         $this->validate();
 
         $this->requiredPassword('submit', $token, function () {
+
             if ($this->password === $this->password_confirmation) {
                 $this->user->password = $this->password;
                 $this->user->save();
