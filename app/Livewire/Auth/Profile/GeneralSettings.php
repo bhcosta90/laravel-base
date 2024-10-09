@@ -40,7 +40,7 @@ class GeneralSettings extends Component
                 'required',
                 'email:rfc,filter,dns',
                 'max:120',
-                Rule::unique('users', 'email')->ignore($this->user?->id),
+                Rule::unique('users', 'email')->ignore($this->user->id),
             ],
         ];
     }
