@@ -4,7 +4,7 @@
     'records',
 ])
 
-<div>
+<div class="overflow-y-auto">
     <table @class([
         'min-w-full divide-y divide-gray-300'
     ])>
