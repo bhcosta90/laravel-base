@@ -2,13 +2,12 @@
 
 declare(strict_types = 1);
 
-use App\Livewire\Livewire\Auth\Profile\GeneralSettings;
-
+use App\Livewire\Auth\Profile\GeneralSettings;
 use App\Models\User;
 
 use function Pest\Livewire\livewire;
 
-describe('Livewire/Livewire/Auth/Profile/GeneralSettings -> Feature', function () {
+describe('Livewire/Auth/Profile/GeneralSettings -> Feature', function () {
     beforeEach(function () {
         $this->user = User::factory()->create();
     });

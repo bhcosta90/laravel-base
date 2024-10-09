@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Livewire\Livewire\Auth\Profile;
+namespace App\Livewire\Auth\Profile;
 
 use function __;
 
@@ -25,7 +25,7 @@ class Password extends Component
 
     public function render(): View
     {
-        return view('livewire.livewire.auth.profile.password');
+        return view('livewire.auth.profile.password');
     }
 
     public function submit(?string $token = null): void

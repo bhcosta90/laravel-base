@@ -12,7 +12,7 @@ describe('Livewire/Auth/Profile/Password -> Feature', function () {
     });
 
     test('validates password and password confirmation correctly', function () {
-        livewire(App\Livewire\Livewire\Auth\Profile\Password::class, ['user' => $this->user])
+        livewire(App\Livewire\Auth\Profile\Password::class, ['user' => $this->user])
             ->toBeValidate([
                 'password' => str_repeat('a', 26),
             ], [
