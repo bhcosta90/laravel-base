@@ -39,5 +39,6 @@
                 </div>
             </div>
         </div>
+        <livewire:auth.dialog.password />
     </body>
 </html>

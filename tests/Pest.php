@@ -47,9 +47,14 @@ expect()->extend('toBeOne', function () {
 */
 
 Testable::macro('toBeValidate', function (array $data, $errors, $action = 'submit', $debug = false) {
-    $this->set($data)
-        ->call($action)
-        ->assertHasErrors($errors, $debug);
+    $lw = $this->set($data)
+        ->call($action);
+
+    if (filled($errors)) {
+        $lw->assertHasErrors($errors, $debug);
+    } else {
+        $lw->assertHasNoErrors();
+    }
 
     return $this;
 });

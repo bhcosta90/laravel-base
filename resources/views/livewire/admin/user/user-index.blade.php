@@ -10,8 +10,8 @@
             <x-table.row>
                 <x-table.id />
                 <x-table.th label="Name" name="name" :$sortName :$sortDirection />
-                <x-table.th label="Email" name="email" :$sortName :$sortDirection />
-                <x-table.th action></x-table.th>
+                <x-table.th label="Email" name="email" :$sortName :$sortDirection hidden />
+                <x-table.th action hidden></x-table.th>
                 <x-table.th action></x-table.th>
                 <x-table.th action></x-table.th>
             </x-table.row>
@@ -21,12 +21,12 @@
                 <x-table.row>
                     <x-table.id :id="$record->id" />
                     <x-table.td :label="$record->name" />
-                    <x-table.td>
+                    <x-table.td hidden>
                         <x-ui.link href="mailto:{{ $record->email }}" navigate>
                             {{ $record->email }}
                         </x-ui.link>
                     </x-table.td>
-                    <x-table.td>
+                    <x-table.td hidden>
                         <x-ui.button
                             :disabled="!auth()->user()->can('impersonate', $record)"
                             label="Impersonate"

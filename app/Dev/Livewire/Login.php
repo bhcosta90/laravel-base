@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
-use Livewire\Attributes\Computed;
+use Livewire\Attributes\{Computed, On};
 use Livewire\Component;
 
 class Login extends Component
@@ -35,6 +35,7 @@ class Login extends Component
     }
 
     #[Computed]
+    #[On('user::index')]
     public function users(): Builder
     {
         return User::query()->orderBy('created_at');
