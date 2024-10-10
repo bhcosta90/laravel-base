@@ -10,21 +10,27 @@ use Closure;
 
 use Cookie;
 
-trait HasDelete
+trait WithAlert
 {
-    public function openConfirmationModal(string $action, int $id): void
+    public function confirmAlert(string $action, int $id): void
     {
         $this->dispatch(
-            'modal::confirmation::open',
+            'alert',
             component: $this->getId(),
             action: $action,
-            id: $id
+            confirm: true,
+            params: $id,
+            type: 'confirmation',
+            title: __('Are you sure you want to delete this record?'),
+            description: __('This action cannot be undone.'),
+            textCancel: __('Cancel'),
+            textConfirm: __('Yes, delete')
         );
 
         Cookie::queue('verify-component-id', $this->getId(), 120);
     }
 
-    public function confirmationModal(string $token, Closure $callback): void
+    public function executeConfirmAlert(string $token, Closure $callback): void
     {
         if (filled($token) && app()->environment('testing')) {
             $callback();

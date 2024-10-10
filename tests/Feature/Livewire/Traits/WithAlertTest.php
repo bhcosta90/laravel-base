@@ -11,7 +11,7 @@ describe('Livewire/Traits/HasPassword -> Feature', function () {
         app()->detectEnvironment(fn () => 'local');
         livewire(ComponentHasTraitsFake::class)
             ->call('delete')
-            ->assertDispatched('modal::confirmation');
+            ->assertDispatched('alert');
     });
 
     test('logs info and asserts ok when valid token is provided', function () {

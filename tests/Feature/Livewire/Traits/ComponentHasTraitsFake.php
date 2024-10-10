@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace Tests\Feature\Livewire\Traits;
 
-use App\Livewire\Traits\{HasDelete, HasPassword};
+use App\Livewire\Traits\{HasPassword, WithAlert};
 use Livewire\Component;
 
 class ComponentHasTraitsFake extends Component
 {
     use HasPassword;
-    use HasDelete;
+    use WithAlert;
 
     public function submit(?string $token = null): void
     {
@@ -21,12 +21,12 @@ class ComponentHasTraitsFake extends Component
 
     public function delete(): void
     {
-        $this->openConfirmationModal('submit', 1);
+        $this->confirmAlert('submit', 1);
     }
 
     public function deleteConfirmation(string $token): void
     {
-        $this->confirmationModal($token, function () {
+        $this->executeConfirmAlert($token, function () {
             //
         });
     }
