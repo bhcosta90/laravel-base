@@ -26,10 +26,10 @@ describe('Livewire/Auth/Profile/Password -> Feature', function () {
                 'password_confirmation' => 'password123',
             ], [
                 'password',
-            ])->toBeValidate([
+            ])->set([
                 'password'              => 'password123',
                 'password_confirmation' => 'password123',
-            ], []);
+            ])->call('submit', 'fake-token');
 
         expect(Hash::check('password123', $this->user->refresh()->password))->toBeTrue();
     });

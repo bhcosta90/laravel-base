@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Livewire\Admin\User;
 
-use App\Livewire\Traits\Filterable;
+use App\Livewire\Traits\{Filterable, WithAlert};
 use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\View;
@@ -17,6 +17,7 @@ class UserIndex extends Component
 {
     use Filterable;
     use AuthorizesRequests;
+    use WithAlert;
 
     public function mount(): void
     {
@@ -38,5 +39,20 @@ class UserIndex extends Component
             ->orderBy($this->sortName, $this->sortDirection)
             ->orderBy('email')
             ->paginate(10);
+    }
+
+    #[On('user::delete')]
+    public function delete(User $user): void
+    {
+        $this->confirmAlert('deleteConfirmation', $user->id);
+    }
+
+    public function deleteConfirmation(string $token, User $user): void
+    {
+        $this->executeConfirmAlert($token, function () use ($user) {
+            $user->delete();
+            $this->dispatch('user::index');
+            $this->dispatch('notify::success', __('User deleted successfully.'));
+        });
     }
 }

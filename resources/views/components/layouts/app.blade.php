@@ -40,5 +40,6 @@
             </div>
         </div>
         <livewire:auth.dialog.password />
+        <x-ui.alert-modal />
     </body>
 </html>
