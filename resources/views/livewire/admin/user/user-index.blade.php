@@ -31,6 +31,7 @@
                             :disabled="!auth()->user()->can('impersonate', $record)"
                             label="Impersonate"
                             @click="$dispatch('user::impersonate', { user: {{ $record->id }} })"
+                            wire:target="user::impersonate"
                             xs
                         />
                     </x-table.td>
@@ -39,6 +40,7 @@
                             :disabled="!auth()->user()->can('update', $record)"
                             label="Edit"
                             @click="$dispatch('load::manager', { user: {{ $record->id }} })"
+                            wire:target="load::manager"
                             xs
                             secondary
                         />
@@ -47,6 +49,7 @@
                         <x-ui.button
                             :disabled="!auth()->user()->can('delete', $record)"
                             @click="$dispatch('user::delete', { user: {{ $record->id }} })"
+                            wire:target="user::delete"
                             label="Delete"
                             xs
                             warning
