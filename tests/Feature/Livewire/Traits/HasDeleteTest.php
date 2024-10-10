@@ -10,15 +10,8 @@ describe('Livewire/Traits/HasPassword -> Feature', function () {
     test('dispatches password open event on submit', function () {
         app()->detectEnvironment(fn () => 'local');
         livewire(ComponentHasTraitsFake::class)
-            ->call('submit')
-            ->assertDispatched('user::password::open');
-    });
-
-    test('returns a bad request when token is provided', function () {
-        app()->detectEnvironment(fn () => 'local');
-        livewire(ComponentHasTraitsFake::class)
-            ->call('submit', 'token')
-            ->assertBadRequest();
+            ->call('delete')
+            ->assertDispatched('modal::confirmation');
     });
 
     test('logs info and asserts ok when valid token is provided', function () {
@@ -28,7 +21,7 @@ describe('Livewire/Traits/HasPassword -> Feature', function () {
             'verify-component-id' => 'fake-id',
         ])
             ->test(ComponentHasTraitsFake::class)
-            ->call('submit', 'fake-id')
+            ->call('deleteConfirmation', 'fake-id')
             ->assertOk();
     });
 });

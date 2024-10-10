@@ -14,7 +14,7 @@ trait HasPassword
 
     public function requiredPassword(string $action, ?string $token = null, ?Closure $callback = null): void
     {
-        if (app()->environment('testing')) {
+        if (filled($token) && app()->environment('testing')) {
             $callback();
 
             return;
@@ -27,13 +27,13 @@ trait HasPassword
                 action: $action,
             );
 
-            Cookie::queue('password', $this->getId(), 120);
+            Cookie::queue('verify-component-id', $this->getId(), 120);
 
             return;
         }
 
-        Cookie::get('password') === $this->getId() ?: abort(400);
-        Cookie::forget('password');
+        Cookie::get('verify-component-id') === $this->getId() ?: abort(400);
+        Cookie::forget('verify-component-id');
         $callback();
     }
 

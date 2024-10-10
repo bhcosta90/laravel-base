@@ -46,6 +46,7 @@
                     <x-table.td>
                         <x-ui.button
                             :disabled="!auth()->user()->can('delete', $record)"
+                            @click="$dispatch('user::delete', { user: {{ $record->id }} })"
                             label="Delete"
                             xs
                             warning

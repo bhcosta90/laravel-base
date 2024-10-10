@@ -5,13 +5,15 @@ declare(strict_types = 1);
 use App\Livewire\Admin\User\UserIndex;
 use App\Models\User;
 
-use function Pest\Laravel\actingAs;
+use function Pest\Laravel\{actingAs, assertSoftDeleted};
 use function Pest\Livewire\livewire;
 
 describe('Livewire/Admin/User/UserIndex -> Feature', function () {
+    beforeEach(function () {
+        actingAs(User::factory()->make());
+    });
 
     test('it filters users based on search input', function () {
-        actingAs(User::factory()->make());
 
         $user1 = User::factory()->create([
             'name' => 'John Doe',
@@ -37,5 +39,17 @@ describe('Livewire/Admin/User/UserIndex -> Feature', function () {
             ->assertDontSee($user2->email)
             ->assertDontSee($user3->name)
             ->assertDontSee($user3->email);
+    });
+
+    it('a', function () {
+        $user = User::factory()->create();
+
+        livewire(UserIndex::class)
+            ->call('delete', $user)
+            ->assertDispatched('modal::confirmation')
+            ->call('deleteConfirmation', 'token', $user)
+            ->assertDispatched('notify::success');
+
+        assertSoftDeleted($user);
     });
 });

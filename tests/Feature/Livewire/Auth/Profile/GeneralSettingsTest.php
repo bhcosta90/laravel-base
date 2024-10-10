@@ -36,7 +36,7 @@ describe('Livewire/Auth/Profile/GeneralSettings -> Feature', function () {
             ])->set([
                 'user.name'  => $user->name,
                 'user.email' => $user->email,
-            ])->call('submit');
+            ])->call('submit', 'token');
 
         expect($this->user->refresh())
             ->name->toBe($user->name)
