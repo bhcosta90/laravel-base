@@ -15,7 +15,7 @@ trait HasDelete
     public function openConfirmationModal(string $action, int $id): void
     {
         $this->dispatch(
-            'modal::confirmation',
+            'modal::confirmation::open',
             component: $this->getId(),
             action: $action,
             id: $id

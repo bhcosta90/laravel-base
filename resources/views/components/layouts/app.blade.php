@@ -40,6 +40,5 @@
             </div>
         </div>
         <livewire:auth.dialog.password />
-        <livewire:admin.dialog.confirmation-modal />
     </body>
 </html>
