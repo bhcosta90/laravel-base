@@ -41,12 +41,12 @@ describe('Livewire/Admin/User/UserIndex -> Feature', function () {
             ->assertDontSee($user3->email);
     });
 
-    it('a', function () {
+    test('it deletes a user and dispatches notifications', function () {
         $user = User::factory()->create();
 
         livewire(UserIndex::class)
             ->call('delete', $user)
-            ->assertDispatched('modal::confirmation')
+            ->assertDispatched('alert')
             ->call('deleteConfirmation', 'token', $user)
             ->assertDispatched('notify::success');
 
