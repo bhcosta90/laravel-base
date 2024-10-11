@@ -33,6 +33,6 @@ class UserPolicy
 
     public function delete(User $user, User $userActual = null): bool
     {
-        return $user->id < 5 && auth()->id() !== $userActual->id;
+        return $user->id < 5 && !$user->is($userActual);
     }
 }
