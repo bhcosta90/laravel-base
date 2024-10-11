@@ -11,7 +11,7 @@ trait Active
     public function scopeActive($query, bool $active = true): void
     {
         $query->where(function ($query) use ($active) {
-            $table = with(new static())->getTable();
+            $table = (new self())->getTable();
 
             if ($active) {
                 $query->where($table . '.is_active', true)
