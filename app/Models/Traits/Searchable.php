@@ -12,6 +12,7 @@ trait Searchable
     {
         $query->where(function (Builder $query) use ($fields, $search) {
             foreach ($search as $value) {
+                $value = trim($value);
                 $query->when($value, function (Builder $query) use ($fields, $value) {
                     $query->orWhereAny($fields, 'like', "{$value}%");
                 });

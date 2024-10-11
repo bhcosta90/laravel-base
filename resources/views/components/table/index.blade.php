@@ -5,15 +5,19 @@
 ])
 
 <div class="overflow-y-auto">
-    <table @class([
+
+    <!--<div wire:loading.remove class="w-full">-->
+    <div class="w-full">
+        <table @class([
         'min-w-full divide-y divide-gray-300'
     ])>
-        {{ $slot }}
-    </table>
+            {{ $slot }}
+        </table>
 
-    @if($records instanceof Paginator)
-        <div class="mt-2">
-            {{ $records->links('livewire::tailwind') }}
-        </div>
-    @endif
+        @if($records instanceof Paginator)
+            <div class="mt-2">
+                {{ $records->links('livewire::tailwind') }}
+            </div>
+        @endif
+    </div>
 </div>

@@ -12,6 +12,9 @@ trait Filterable
     use WithPagination;
 
     #[Url]
+    public bool $active = true;
+
+    #[Url]
     public array $search = [];
 
     #[Url(as: 'sort-name')]
@@ -40,5 +43,11 @@ trait Filterable
         return $this->sortDirection === 'asc'
             ? 'desc'
             : 'asc';
+    }
+
+    public function updatedActive(): void
+    {
+        $this->resetPage();
+        ;
     }
 }

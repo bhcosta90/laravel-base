@@ -12,6 +12,7 @@
                 <x-table.th label="Name" name="name" :$sortName :$sortDirection />
                 <x-table.th label="Email" name="email" :$sortName :$sortDirection hidden />
                 <x-table.th action hidden></x-table.th>
+                <x-table.active />
                 <x-table.th action></x-table.th>
                 <x-table.th action></x-table.th>
             </x-table.row>
@@ -35,6 +36,7 @@
                             xs
                         />
                     </x-table.td>
+                    <x-table.active :active="$record->is_active" />
                     <x-table.td>
                         <x-ui.button
                             :disabled="!auth()->user()->can('update', $record)"
