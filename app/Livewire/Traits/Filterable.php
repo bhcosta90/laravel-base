@@ -48,6 +48,5 @@ trait Filterable
     public function updatedActive(): void
     {
         $this->resetPage();
-        ;
     }
 }

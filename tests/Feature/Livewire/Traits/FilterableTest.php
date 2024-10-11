@@ -9,6 +9,8 @@ describe('Livewire/Traits/Filterable -> Feature', function () {
     beforeEach(function () {
         $this->class = new class () extends Component {
             use Filterable;
+
+            public $page = 10;
         };
     });
 
@@ -33,6 +35,11 @@ describe('Livewire/Traits/Filterable -> Feature', function () {
 
         $this->class->sortBy('description');
         expect($this->class->sortDirection)->toBe('asc');
+    });
+
+    it('reset page', function () {
+        $this->class->updatedActive();
+        expect($this->class->page)->toBe(10);
     });
 
 });
