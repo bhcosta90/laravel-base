@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
-use App\Models\Traits\Searchable;
+use App\Models\Traits\{Active, Searchable};
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use Searchable;
     use SoftDeletes;
+    use Active;
 
     /**
      * The attributes that are mass assignable.

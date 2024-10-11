@@ -54,10 +54,13 @@ describe('Policies/UserPolicy -> Feature', function () {
     it('allows deleting a user if user id is less than 5', function () {
         $policy = new UserPolicy();
 
-        $user1 = User::factory()->make(['id' => 1]);
+        $user = User::factory()->make(['id' => 1]);
+
+        $user1 = User::factory()->make(['id' => 2]);
         $user2 = User::factory()->make(['id' => 6]);
 
-        expect($policy->delete($user1))->toBeTrue()
-            ->and($policy->delete($user2))->toBeFalse();
+        expect($policy->delete($user, $user1))->toBeTrue()
+            ->and($policy->delete($user, $user))->toBeFalse()
+            ->and($policy->delete($user2, $user1))->toBeFalse();
     });
 });

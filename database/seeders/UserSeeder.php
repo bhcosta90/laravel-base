@@ -14,5 +14,9 @@ class UserSeeder extends Seeder
         User::factory(30)->create([
             'created_at' => now()->addSecond(),
         ]);
+
+        User::factory(5)->disabled()->create([
+            'created_at' => now()->addSecond(),
+        ]);
     }
 }

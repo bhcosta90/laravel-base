@@ -1,6 +1,7 @@
 <div>
     <x-ui.slide :$open title="Add user" create="Add user">
         <form wire:submit="submit" class="space-y-2">
+            <x-ui.toggle wire:model="user.is_active"/>
             <x-ui.input wire:model="user.name" label="Name" />
             <x-ui.input wire:model="user.email" label="Email" />
             <div>

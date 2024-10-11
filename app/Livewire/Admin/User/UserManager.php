@@ -65,9 +65,10 @@ class UserManager extends Component
     protected function rules(): array
     {
         return [
-            'open'       => 'required|in:1',
-            'user.name'  => 'required|string|max:120',
-            'user.email' => [
+            'open'           => 'required|in:1',
+            'user.name'      => 'required|string|max:120',
+            'user.is_active' => 'boolean',
+            'user.email'     => [
                 'required',
                 'email:rfc,filter,dns',
                 'max:120',
