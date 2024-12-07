@@ -10,7 +10,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('login', fn () => 'oi')->name('login');
+    Route::get('login', Auth\Login::class)->name('login');
     Route::get('register', Auth\Register::class)->name('register');
     Route::get('password/recovery', Auth\Password\Recovery::class)->name('password.recovery');
     Route::get('password/reset', Auth\Password\Reset::class)->name('password.reset');
