@@ -9,6 +9,7 @@
         @livewireStyles
     </head>
     <body>
+        <x-dev />
         {{ $slot }}
         @livewireScripts
     </body>
