@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use App\Livewire\Admin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,7 +11,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/info', fn () => phpinfo())->name('info');
-    Route::get('dashboard', fn () => 'oi')->name('dashboard');
+    Route::get('dashboard', Admin\Dashboard::class)->name('dashboard');
 });
 
 include __DIR__ . "/auth.php";
