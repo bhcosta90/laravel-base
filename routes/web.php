@@ -8,6 +8,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/info', fn () => phpinfo());
+Route::middleware('auth')->group(function () {
+    Route::get('/info', fn () => phpinfo())->name('info');
+    Route::get('dashboard', fn () => 'oi')->name('dashboard');
+});
 
 include __DIR__ . "/auth.php";
