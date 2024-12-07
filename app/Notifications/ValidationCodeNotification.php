@@ -13,7 +13,7 @@ class ValidationCodeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public int $code)
+    public function __construct(public int | string $code)
     {
     }
 

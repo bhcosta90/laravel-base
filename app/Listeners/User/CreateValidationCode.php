@@ -19,8 +19,9 @@ class CreateValidationCode
     {
         /** @var User $user */
         $user = $event->user;
+        $code = random_int(100000, 999999);
 
-        $user->validation_code = $code = random_int(100000, 999999);
+        $user->validation_code = (string) $code;
         $user->save();
 
         $user->notify(new ValidationCodeNotification($code));
