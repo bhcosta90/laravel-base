@@ -9,3 +9,5 @@ Route::get('/', function () {
 });
 
 Route::get('/info', fn () => phpinfo());
+
+include __DIR__ . "/auth.php";
