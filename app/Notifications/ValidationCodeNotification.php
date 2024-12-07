@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Notifications;
 
+use App\Enum\Queue;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -15,6 +16,7 @@ class ValidationCodeNotification extends Notification implements ShouldQueue
 
     public function __construct(public int | string $code)
     {
+        $this->onQueue(Queue::High);
     }
 
     public function via($notifiable)
