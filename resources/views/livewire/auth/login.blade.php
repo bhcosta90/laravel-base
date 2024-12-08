@@ -32,13 +32,13 @@
 
             <div>
                 <div>
-                    <a href="{{ route('password.recovery') }}" class="link link-primary">
+                    <a wire:navigate href="{{ route('password.recovery') }}" class="link link-primary">
                         @lang('Forgot your password?')
                     </a>
                 </div>
 
                 <div>
-                    <a href="{{ route('register') }}" class="link link-primary">
+                    <a wire:navigate href="{{ route('register') }}" class="link link-primary">
                         @lang('I want to create an account')
                     </a>
                 </div>
