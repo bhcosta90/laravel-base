@@ -1,6 +1,6 @@
-<div class="flex items-center space-x-2">
-    <x-select class="select-sm" icon="o-user" :options="$this->users" wire:model="selectedUser"
+<div class="flex items-center join">
+    <x-select sm class="join-item" icon="o-user" :options="$this->users" wire:model="selectedUser"
               placeholder="Select an user"/>
 
-    <x-button sm secondary wire:click="login">Login</x-button>
+    <x-button sm class="join-item" secondary wire:click="login">Login</x-button>
 </div>

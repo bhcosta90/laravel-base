@@ -19,9 +19,6 @@ export default {
                 '3': '3px',
             },
             colors: {
-                textColor: {
-                    DEFAULT: '#4A5568',
-                },
                 "muted": "#CEC4C7",
                 "primary-contrast": "#FFF",
                 "secondary-contrast": "#FFF",
@@ -41,7 +38,7 @@ export default {
                     ...require("daisyui/src/theming/themes")["light"],
                     "--rounded-box": "0.3rem",
                     "--padding-card": "1.25rem",
-
+                    "neutral-content": "#e9ecef",
                     primary: "#007bff",
                     secondary: "#6c757d",
                     success: "#28a745",
