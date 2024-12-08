@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Livewire\Dev;
 
+use App\Actions\Auth\LogoutAction;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -25,8 +26,14 @@ class Login extends Component
         return User::query()->orderBy('id')->get();
     }
 
-    public function login(): void
+    public function login(LogoutAction $logoutAction): void
     {
+        if (blank($this->selectedUser)) {
+            $logoutAction->handle();
+
+            return;
+        }
+
         auth()->loginUsingId($this->selectedUser);
 
         $this->redirect(route('dashboard'));
