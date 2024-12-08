@@ -9,4 +9,64 @@
 
 .checkbox {
     border-radius: 0;
+
+    &.checkbox-primary:checked{
+        --chkfg: theme('colors.primary-contrast');
+    }
+
+    &.checkbox-secondary:checked{
+        --chkfg: theme('colors.secondary-contrast');
+    }
+
+    &.checkbox-info:checked{
+        --chkfg: theme('colors.info-contrast');
+    }
+
+    &.checkbox-warning:checked{
+        --chkfg: theme('colors.warning-contrast');
+    }
+
+    &.checkbox-danger:checked{
+        --chkfg: theme('colors.danger-contrast');
+    }
+
+    &.checkbox-light:checked{
+        --chkfg: theme('colors.light-contrast');
+    }
+
+    &.checkbox-dark:checked{
+        --chkfg: theme('colors.dark-contrast');
+    }
+}
+
+.btn-primary {
+    @apply text-primary-contrast
+}
+
+.btn-secondary {
+    @apply text-secondary-contrast
+}
+
+.btn-warning {
+    @apply text-warning-contrast
+}
+
+.btn-success {
+    @apply text-success-contrast
+}
+
+.btn-info {
+    @apply text-info-contrast
+}
+
+.btn-danger {
+    @apply text-danger-contrast
+}
+
+.btn-light {
+    @apply text-light-contrast
+}
+
+.btn-dark {
+    @apply text-dark-contrast
 }

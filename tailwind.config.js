@@ -22,7 +22,15 @@ export default {
                 textColor: {
                     DEFAULT: '#4A5568',
                 },
-                "muted": "#CEC4C7"
+                "muted": "#CEC4C7",
+                "primary-contrast": "#FFF",
+                "secondary-contrast": "#FFF",
+                "success-contrast": "#FFF",
+                "warning-contrast": "#1f2d3d",
+                "info-contrast": "#FFF",
+                "danger-contrast": "#FFF",
+                "light-contrast": "#1f2d3d",
+                "dark-contrast": "#FFF"
             }
         },
     },
@@ -32,7 +40,16 @@ export default {
                 admin: {
                     ...require("daisyui/src/theming/themes")["light"],
                     "--rounded-box": "0.3rem",
-                    "--padding-card": "1.25rem"
+                    "--padding-card": "1.25rem",
+
+                    primary: "#007bff",
+                    secondary: "#6c757d",
+                    success: "#28a745",
+                    warning: "#ffc107",
+                    info: "#17a2b8",
+                    danger: "#dc3545",
+                    light: "#f8f9fa",
+                    dark: "#343a40",
                 }
             }
         ],
