@@ -1,5 +1,5 @@
 <x-card primary title="Password Reset" shadow class="mx-auto w-[360px]">
-    <x-slot:header center>{{ config('app.name') }}</x-slot:header>
+    <x-slot:header lg center>{{ config('app.name') }}</x-slot:header>
 
     @if($message = session()->get('status'))
         <x-alert icon="o-exclamation-triangle" class="alert-error mb-4">
