@@ -1,6 +1,7 @@
 <div {{ $attributes->class([
-    'card-header text-4xl border-b-1 p-3',
-    'text-center' => $attributes->has('center'),
+    'card-header border-b-1 p-3',
+    'text-3xl' => $attributes->get('lg'),
+    'text-center' => $attributes->get('center'),
 ]) }}
 >
     {{ $slot }}
