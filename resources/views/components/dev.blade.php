@@ -1,6 +1,8 @@
-<div class="flex gap-y-3">
+<div>
     @if(!app()->isProduction())
-        <livewire:dev.branch-env />
-        <livewire:dev.login />
+        <div class="flex gap-x-3 justify-end bg-base-200 p-3 border-b-2 border-b-base-300">
+            <livewire:dev.branch-env />
+            <livewire:dev.login />
+        </div>
     @endif
 </div>

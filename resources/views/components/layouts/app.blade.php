@@ -8,7 +8,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body>
+    <body data-theme="admin">
         <x-dev />
         {{ $slot }}
         @livewireScripts

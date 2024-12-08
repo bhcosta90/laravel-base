@@ -1,21 +1,36 @@
-<div title="Password recovery" shadow class="mx-auto w-[450px]">
-    @if($message)
-        <x-alert icon="o-exclamation-triangle" class="alert-success mb-4">
-            <span>{{ $message }}</span>
-        </x-alert>
-    @endif
+<div class="mx-auto w-[360px]">
+    <div class="text-center text-3xl mb-3">{{ config('app.name') }}</div>
+    <x-card title="Password recovery" shadow>
+        @if($message)
+            <x-alert icon="o-exclamation-triangle" class="alert-success mb-4">
+                <span>{{ $message }}</span>
+            </x-alert>
+        @endif
 
-    <x-form wire:submit="startPasswordRecovery">
-        <x-input label="Email" wire:model="email"/>
-        <x-slot:actions>
-            <div class="w-full flex items-center justify-between">
-                <a wire:navigate href="{{ route('login') }}" class="link link-primary">
-                    @lang('Never mind, get back to login page.')
-                </a>
+        <div class="text-center">
+            @lang('You forgot your password? Here you can easily retrieve a new password.')
+        </div>
+
+        <x-form wire:submit="startPasswordRecovery">
+            <x-input label="Email" wire:model="email"/>
+            <x-slot:actions>
                 <div>
-                    <x-button label="Submit" class="btn-primary" type="submit" spinner="submit"/>
+                    <x-button full label="Submit" class="btn-primary" type="submit" spinner="submit"/>
                 </div>
-            </div>
-        </x-slot:actions>
-    </x-form>
+                <div>
+                    <div>
+                        <a wire:navigate href="{{ route('login') }}" class="link link-primary">
+                            @lang('Login')
+                        </a>
+                    </div>
+                    <div>
+                        <a wire:navigate href="{{ route('register') }}" class="link link-primary">
+                            @lang('Register a new membership')
+                        </a>
+                    </div>
+                </div>
+            </x-slot:actions>
+        </x-form>
+    </x-card>
+
 </div>

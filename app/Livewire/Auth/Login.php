@@ -17,6 +17,8 @@ class Login extends Component
 
     public ?string $password = null;
 
+    public bool $remember = false;
+
     public function render(): View
     {
         return view('livewire.auth.login');
@@ -28,8 +30,8 @@ class Login extends Component
             return;
         }
 
-        $loginEmail = Auth::attempt(['email' => $this->email, 'password' => $this->password]);
-        $loginLogin = !$loginEmail && Auth::attempt(['login' => $this->email, 'password' => $this->password]);
+        $loginEmail = Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember);
+        $loginLogin = !$loginEmail && Auth::attempt(['login' => $this->email, 'password' => $this->password], $this->remember);
 
         if (!$loginEmail && !$loginLogin) {
             RateLimiter::hit($this->throttleKey());

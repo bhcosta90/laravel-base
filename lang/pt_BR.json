@@ -161,5 +161,13 @@
     "Photo": "Foto",
     "I want to create an account": "Eu quero criar uma conta",
     "I already have an account": "Eu já tenho uma conta",
-    "Select an option": "Selecione uma opção"
+    "Select an option": "Selecione uma opção",
+    "Reset": "Redefinir",
+    "Never mind, get back to login page.": "Deixa pra lá, voltar para a página de login.",
+    "Submit": "Enviar",
+    "Sign in to start your session": "Faça login para iniciar sua sessão",
+    "Register a new membership": "Registrar um novo membro",
+    "You forgot your password? Here you can easily retrieve a new password.": "Esqueceu sua senha? Aqui você pode facilmente recuperar uma nova senha.",
+    "You will receive an email with the password recovery link.": "Você receberá um e-mail com o link de recuperação de senha.",
+    "OR": "OU"
 }

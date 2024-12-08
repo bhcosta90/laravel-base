@@ -1,4 +1,6 @@
-<div title="Password Reset" shadow class="mx-auto w-[450px]">
+<x-card primary title="Password Reset" shadow class="mx-auto w-[360px]">
+    <x-slot:header center>{{ config('app.name') }}</x-slot:header>
+
     @if($message = session()->get('status'))
         <x-alert icon="o-exclamation-triangle" class="alert-error mb-4">
             {{ $message }}
@@ -11,14 +13,14 @@
         <x-input label="Password" wire:model="password" type="password"/>
         <x-input label="Password Confirmation" wire:model="password_confirmation" type="password"/>
         <x-slot:actions>
-            <div class="w-full flex items-center justify-between">
+            <div>
+                <x-button label="Reset" primary full type="submit" spinner="submit"/>
+            </div>
+            <div>
                 <a wire:navigate href="{{ route('login') }}" class="link link-primary">
-                    Never mind, get back to login page.
+                    @lang('I already have an account')
                 </a>
-                <div>
-                    <x-button label="Reset" class="btn-primary" type="submit" spinner="submit"/>
-                </div>
             </div>
         </x-slot:actions>
     </x-form>
-</div>
+</x-card>
