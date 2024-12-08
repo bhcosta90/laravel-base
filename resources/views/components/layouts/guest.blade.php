@@ -8,9 +8,13 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body>
+    <body data-theme="admin" class="flex flex-col font-sans antialiased min-h-full max-w-screen bg-neutral-content">
         <x-dev />
-        {{ $slot }}
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+            <div class="w-full sm:max-w-md overflow-hidden sm:rounded-lg">
+                {{ $slot }}
+            </div>
+        </div>
         @livewireScripts
     </body>
 </html>

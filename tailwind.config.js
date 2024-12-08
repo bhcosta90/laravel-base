@@ -14,7 +14,30 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            borderWidth: {
+                '1': '1px',
+                '3': '3px',
+            },
+            colors: {
+                textColor: {
+                    DEFAULT: '#4A5568',
+                },
+                "muted": "#CEC4C7"
+            }
         },
     },
-    plugins: [],
+    daisyui: {
+        themes: [
+            {
+                admin: {
+                    ...require("daisyui/src/theming/themes")["light"],
+                    "--rounded-box": "0.3rem",
+                    "--padding-card": "1.25rem"
+                }
+            }
+        ],
+    },
+    plugins: [
+        require('daisyui')
+    ],
 };

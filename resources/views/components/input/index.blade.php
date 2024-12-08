@@ -1,12 +1,14 @@
 @props(['label' => null])
 
-<span>
+<div>
     @if($label)
         <label class="block text-sm font-medium text-gray-700">
-        {{ $label }}
+        <div class="mb-0.5">{{ __($label) }}</div>
     @endif
-    <input {{ $attributes }} />
+    <input {{ $attributes->class([
+        'input input-bordered w-full'
+    ]) }} />
     @if($label)
         </label>
     @endif
-</span>
+</div>

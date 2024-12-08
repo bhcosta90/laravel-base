@@ -1,6 +1,8 @@
 @props(['actions' => null])
 
-<form>
+<form {{ $attributes->class([
+    'space-y-2',
+]) }}>
     {{ $slot }}
 
     @if(filled($actions))
