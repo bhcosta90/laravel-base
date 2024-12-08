@@ -67,7 +67,7 @@ test('test if is possible to reset the password with the given token', function 
     );
 });
 
-test('checking form rules', function ($field, $value, $rule) {
+test('checking form rules', function () {
     Notification::fake();
 
     $user = User::factory()->create();
@@ -79,23 +79,32 @@ test('checking form rules', function ($field, $value, $rule) {
     Notification::assertSentTo(
         $user,
         ResetPassword::class,
-        function (ResetPassword $notification) use ($user, $field, $value, $rule) {
-            Livewire::test(Password\Reset::class, ['token' => $notification->token, 'email' => $user->email])
-                ->set($field, $value)
-                ->call('updatePassword')
-                ->assertHasErrors([$field => $rule]);
+        function (ResetPassword $notification) use ($user) {
+            $data = [
+                'email:required'     => ['field' => 'email', 'value' => '', 'rule' => 'required'],
+                'email:confirmed'    => ['field' => 'email', 'value' => 'email@email.com', 'rule' => 'confirmed'],
+                'email:email'        => ['field' => 'email', 'value' => 'not-an-email', 'rule' => 'email'],
+                'password:required'  => ['field' => 'password', 'value' => '', 'rule' => 'required'],
+                'password:confirmed' => ['field' => 'password', 'value' => 'any-password', 'rule' => 'confirmed'],
+            ];
+
+            $lw = Livewire::test(Password\Reset::class, ['token' => $notification->token, 'email' => $user->email]);
+
+            foreach ($data as $item) {
+                $field = $item['field'];
+                $value = $item['value'];
+                $rule  = $item['rule'];
+
+                $lw->set($field, $value)
+                    ->call('updatePassword')
+                    ->assertHasErrors([$field => $rule]);
+            }
 
             return true;
         }
     );
 
-})->with([
-    'email:required'     => ['field' => 'email', 'value' => '', 'rule' => 'required'],
-    'email:confirmed'    => ['field' => 'email', 'value' => 'email@email.com', 'rule' => 'confirmed'],
-    'email:email'        => ['field' => 'email', 'value' => 'not-an-email', 'rule' => 'email'],
-    'password:required'  => ['field' => 'password', 'value' => '', 'rule' => 'required'],
-    'password:confirmed' => ['field' => 'password', 'value' => 'any-password', 'rule' => 'confirmed'],
-]);
+});
 
 test('needs to show an obfuscate email to the user', function () {
     $email = 'jeremias@example.com';
