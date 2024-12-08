@@ -16,19 +16,18 @@ it('should render the component', function () {
 
 it('should be able to register a new user in the system', function () {
     Livewire::test(Register::class)
-        ->set('name', 'Joe doe')
+        ->set('name', 'Joe Doe')
         ->set('email', 'joe@doe.com')
         ->set('email_confirmation', 'joe@doe.com')
         ->set('password', 'password')
         ->call('submit')
         ->assertHasNoErrors();
 
+    assertDatabaseCount('users', 1);
     assertDatabaseHas('users', [
         'name'  => 'Joe Doe',
         'email' => 'joe@doe.com',
     ]);
-
-    assertDatabaseCount('users', 1);
 
     expect(auth()->check())
         ->and(auth()->user())

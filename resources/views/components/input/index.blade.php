@@ -2,7 +2,7 @@
 
 <div>
     @if($label)
-        <label class="block text-sm font-medium text-gray-700">
+        <label class="block text-sm">
         <div class="mb-0.5">{{ __($label) }}</div>
     @endif
     <input {{ $attributes->class([
