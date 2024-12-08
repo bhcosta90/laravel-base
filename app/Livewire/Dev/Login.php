@@ -15,6 +15,11 @@ class Login extends Component
 {
     public ?int $selectedUser = null;
 
+    public function mount(): void
+    {
+        $this->selectedUser = auth()->user()?->id;
+    }
+
     public function render(): View
     {
         return view('livewire.dev.login');
