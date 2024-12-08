@@ -11,8 +11,8 @@
             <x-input type="password" label="Password" wire:model="password" type="password"/>
             <x-slot:actions>
                 <div class="w-full flex items-center justify-between">
-                    <x-button label="Reset" type="reset"/>
-                    <x-button label="Register" class="btn-primary" type="submit" spinner="submit"/>
+                    <x-button label="Reset" secondary type="reset"/>
+                    <x-button label="Register" primary type="submit" spinner="submit"/>
                 </div>
 
                 <div class="text-lg text-center text-muted">- @lang('OR') -</div>
