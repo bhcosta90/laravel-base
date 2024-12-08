@@ -61,6 +61,7 @@ export default {
                     "--animation-input": "0",
                     "--btn-focus-scale": "1",
                     "--tab-radius": "0",
+                    "--padding-card": "1.25rem"
                 }
             }
         ],
