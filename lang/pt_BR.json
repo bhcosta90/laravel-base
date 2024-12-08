@@ -169,5 +169,9 @@
     "Register a new membership": "Registrar um novo membro",
     "You forgot your password? Here you can easily retrieve a new password.": "Esqueceu sua senha? Aqui você pode facilmente recuperar uma nova senha.",
     "You will receive an email with the password recovery link.": "Você receberá um e-mail com o link de recuperação de senha.",
+    "Confirm your email": "Confirme seu endereço de e-mail",
+    "Full name": "Nome completo",
+    "Password Confirmation": "Confirmação de senha",
+    "Password Recovery": "Recuperação de senha",
     "OR": "OU"
 }

@@ -8,10 +8,10 @@
     @endif
 
     <x-form wire:submit="updatePassword">
-        <x-input label="Email" value="{{ $this->obfuscatedEmail }}" readonly/>
-        <x-input label="Email Confirmation" wire:model="email_confirmation"/>
-        <x-input label="Password" wire:model="password" type="password"/>
-        <x-input label="Password Confirmation" wire:model="password_confirmation" type="password"/>
+        <x-input placeholder="Email" value="{{ $this->obfuscatedEmail }}" readonly/>
+        <x-input placeholder="Email Confirmation" wire:model="email_confirmation"/>
+        <x-input placeholder="Password" wire:model="password" type="password"/>
+        <x-input placeholder="Password Confirmation" wire:model="password_confirmation" type="password"/>
         <x-slot:actions>
             <div>
                 <x-button label="Reset" primary full type="submit" spinner="submit"/>

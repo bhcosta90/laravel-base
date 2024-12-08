@@ -18,7 +18,7 @@ class EmailValidation extends Component
 
     public function render(): View
     {
-        return view('livewire.email-validation');
+        return view('livewire.email-validation')->layoutData(['title' => 'Email Validation']);
     }
 
     public function handle(): void

@@ -5,10 +5,10 @@
             @lang('Register a new membership')
         </div>
         <x-form wire:submit="submit">
-            <x-input label="Name" wire:model="name"/>
-            <x-input type="email" label="Email" wire:model="email"/>
-            <x-input type="password" label="Confirm your email" wire:model="email_confirmation"/>
-            <x-input type="password" label="Password" wire:model="password" type="password"/>
+            <x-input placeholder="Full name" wire:model="name"/>
+            <x-input type="email" placeholder="Email" wire:model="email"/>
+            <x-input type="password" placeholder="Confirm your email" wire:model="email_confirmation"/>
+            <x-input type="password" placeholder="Password" wire:model="password" type="password"/>
             <x-slot:actions>
                 <div class="w-full flex items-center justify-between">
                     <x-button label="Reset" secondary type="reset"/>

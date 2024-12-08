@@ -22,8 +22,8 @@
 
     <x-form wire:submit="tryToLogin">
         <div class="text-xl text-center">@lang('Sign in to start your session')</div>
-        <x-input label="Email" wire:model="email"/>
-        <x-input label="Password" wire:model="password" type="password"/>
+        <x-input placeholder="Email" wire:model="email"/>
+        <x-input placeholder="Password" wire:model="password" type="password"/>
         <x-slot:actions>
             <div class="flex justify-between items-center">
                 <div><x-checkbox label="Remember Me" primary type="checkbox" wire:model="remember" /></div>

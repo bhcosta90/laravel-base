@@ -17,7 +17,7 @@ class Reset extends Component
 {
     public function render(): View
     {
-        return view('livewire.auth.password.reset');
+        return view('livewire.auth.password.reset')->layoutData(['title' => 'Reset Password']);
     }
 
     public ?string $token = null;

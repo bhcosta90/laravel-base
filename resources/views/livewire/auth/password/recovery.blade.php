@@ -12,7 +12,7 @@
         </div>
 
         <x-form wire:submit="startPasswordRecovery">
-            <x-input label="Email" wire:model="email"/>
+            <x-input placeholder="Email" wire:model="email"/>
             <x-slot:actions>
                 <div>
                     <x-button full label="Submit" class="btn-primary" type="submit" spinner="submit"/>
