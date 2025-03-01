@@ -17,3 +17,5 @@ pre-push:
       runner: bash
     "stan.sh":
       runner: bash
+    "rector.sh":
+      runner: bash
