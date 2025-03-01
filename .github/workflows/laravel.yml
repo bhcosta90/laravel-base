@@ -45,3 +45,5 @@ jobs:
       run: ./vendor/bin/pint
     - name: Execute Stan
       run: ./vendor/bin/phpstan analyse --memory-limit=2G
+    - name: PHP Rector
+      run: ./vendor/bin/rector process --dry-run
