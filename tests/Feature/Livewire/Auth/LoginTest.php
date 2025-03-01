@@ -55,7 +55,7 @@ test('when access is by email', function () {
 
     Notification::assertSentTo(User::first(), TokenNotification::class, function ($notification) use ($lw) {
         $lw->set('password', $notification->token)
-            ->call('login')
+            ->call('execute')
             ->assertRedirect('dashboard');
 
         return true;
@@ -73,6 +73,38 @@ test('when access is by login', function () {
         ->set('login', 'admin.user')
         ->call('submit')
         ->set('password', 'password')
-        ->call('login')
+        ->call('execute')
         ->assertRedirect('dashboard');
+});
+
+it('Rate Limiter should be fired in the submit when it exceeds 5 attempts', function () {
+    $user = User::factory()->create();
+
+    for ($i = 0; $i < 5; $i++) {
+        livewire(Login::class)
+            ->set('login', $user->login)
+            ->call('submit');
+    }
+
+    livewire(Login::class)
+        ->set('login', $user->login)
+        ->set('password', 'wrong-password')
+        ->call('submit')
+        ->assertHasErrors(['rateLimiter']);
+});
+
+it('Rate Limiter should be fired in the execute when it exceeds 5 attempts', function () {
+    $user = User::factory()->create();
+
+    for ($i = 0; $i < 5; $i++) {
+        livewire(Login::class)
+            ->set('login', $user->login)
+            ->call('execute');
+    }
+
+    livewire(Login::class)
+        ->set('login', $user->login)
+        ->set('password', 'wrong-password')
+        ->call('execute')
+        ->assertHasErrors(['rateLimiter']);
 });
