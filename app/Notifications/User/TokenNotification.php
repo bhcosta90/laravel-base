@@ -4,11 +4,15 @@ declare(strict_types = 1);
 
 namespace App\Notifications\User;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TokenNotification extends Notification
+class TokenNotification extends Notification implements ShouldQueue
 {
+    use Queueable;
+
     public string $token;
 
     public function __construct(?string $token)
@@ -24,11 +28,10 @@ class TokenNotification extends Notification
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage())
-            ->line('');
-    }
-
-    public function toArray($notifiable): array
-    {
-        return [];
+            ->line(__('You have requested a new login token.'))
+            ->line(__('Your token is: :token', ['token' => $this->token]))
+            ->line(__('Please use this token to log in to your account.'))
+            ->line(__('If you did not request this token, please ignore this email.'))
+            ->line(__('Thank you for using our application!'));
     }
 }
