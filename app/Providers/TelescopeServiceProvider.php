@@ -21,18 +21,23 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             if ($isLocal) {
                 return true;
             }
+
             if ($entry->isReportableException()) {
                 return true;
             }
+
             if ($entry->isFailedRequest()) {
                 return true;
             }
+
             if ($entry->isFailedJob()) {
                 return true;
             }
+
             if ($entry->isScheduledTask()) {
                 return true;
             }
+
             return $entry->hasMonitoredTag();
         });
     }
@@ -54,7 +59,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
     protected function gate(): void
     {
-        Gate::define('viewTelescope', fn($user): bool => in_array($user->email, [
+        Gate::define('viewTelescope', fn ($user): bool => in_array($user->email, [
             //
         ]));
     }
