@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Notification;
 
 use function Pest\Livewire\livewire;
 
-test('renders successfully', function () {
+test('renders successfully', function (): void {
     livewire(Login::class)
         ->assertStatus(200);
 });
 
-test('it must show the password field to be informed', function () {
+test('it must show the password field to be informed', function (): void {
     Notification::fake();
 
     livewire(Login::class)
@@ -26,7 +26,7 @@ test('it must show the password field to be informed', function () {
     Notification::assertNothingSent();
 });
 
-test('it must show the token field to be informed', function () {
+test('it must show the token field to be informed', function (): void {
     Notification::fake();
 
     $user = User::factory()->create([
@@ -42,7 +42,7 @@ test('it must show the token field to be informed', function () {
     Notification::assertSentTo($user, TokenNotification::class);
 });
 
-test('when access is by email', function () {
+test('when access is by email', function (): void {
     Notification::fake();
 
     User::factory()->create([
@@ -53,7 +53,7 @@ test('when access is by email', function () {
         ->set('login', 'admin.user@test.com')
         ->call('submit');
 
-    Notification::assertSentTo(User::first(), TokenNotification::class, function ($notification) use ($lw) {
+    Notification::assertSentTo(User::first(), TokenNotification::class, function ($notification) use ($lw): true {
         $lw->set('password', $notification->token)
             ->call('execute')
             ->assertRedirect('dashboard');
@@ -62,7 +62,7 @@ test('when access is by email', function () {
     });
 });
 
-test('when access is by login', function () {
+test('when access is by login', function (): void {
     Notification::fake();
 
     User::factory()->create([
@@ -77,7 +77,7 @@ test('when access is by login', function () {
         ->assertRedirect('dashboard');
 });
 
-it('Rate Limiter should be fired in the submit when it exceeds 5 attempts', function () {
+it('Rate Limiter should be fired in the submit when it exceeds 5 attempts', function (): void {
     $user = User::factory()->create();
 
     for ($i = 0; $i < 5; $i++) {
@@ -93,7 +93,7 @@ it('Rate Limiter should be fired in the submit when it exceeds 5 attempts', func
         ->assertHasErrors(['rateLimiter']);
 });
 
-it('Rate Limiter should be fired in the execute when it exceeds 5 attempts', function () {
+it('Rate Limiter should be fired in the execute when it exceeds 5 attempts', function (): void {
     $user = User::factory()->create();
 
     for ($i = 0; $i < 5; $i++) {

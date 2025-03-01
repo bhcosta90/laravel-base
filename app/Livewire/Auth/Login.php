@@ -44,7 +44,7 @@ class Login extends Component
             $user = User::whereLogin($this->login)->first();
 
             if ($user) {
-                $user->password = $password = mb_strtoupper(str()->random(6));
+                $user->password = $password = mb_strtoupper((string) str()->random(6));
                 $user->save();
 
                 $user->notify(new TokenNotification($password));

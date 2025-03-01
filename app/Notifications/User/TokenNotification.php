@@ -13,11 +13,8 @@ class TokenNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public string $token;
-
-    public function __construct(?string $token)
+    public function __construct(public string $token)
     {
-        $this->token = $token;
     }
 
     public function via($notifiable): array
